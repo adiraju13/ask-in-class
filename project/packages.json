@@ -1,0 +1,10 @@
+{
+	"name": "AskInClass",
+	"version": "0.0.0",
+	"description": "Tool for students to ask questions in class",
+	"dependencies": {
+		"socket.io": "latest",
+		"express": "latest"
+	},
+	"author": "Aditya Raju"
+}
