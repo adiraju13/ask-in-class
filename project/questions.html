@@ -17,7 +17,9 @@
 
 		body {
 			margin: 0;
-			background: #f6f8fb;
+			background:
+				linear-gradient(180deg, #eef6ff 0, #f6f8fb 180px),
+				#f6f8fb;
 		}
 
 		main {
@@ -28,6 +30,40 @@
 
 		.header {
 			margin-bottom: 20px;
+		}
+
+		.session-strip {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 16px;
+			border: 1px solid #d8e6f6;
+			border-radius: 8px;
+			background: #ffffff;
+			box-shadow: 0 6px 18px rgba(23, 32, 51, 0.07);
+			padding: 12px 14px;
+		}
+
+		.session-title {
+			margin-bottom: 2px;
+			font-weight: 800;
+		}
+
+		.session-meta {
+			margin-bottom: 0;
+			color: #697386;
+			font-size: 0.92rem;
+		}
+
+		.status-pill {
+			border-radius: 999px;
+			background: #e7f8ef;
+			color: #166534;
+			font-size: 0.85rem;
+			font-weight: 800;
+			padding: 6px 10px;
+			white-space: nowrap;
 		}
 
 		h1,
@@ -81,6 +117,13 @@
 			padding: 11px 12px;
 		}
 
+		select:focus,
+		textarea:focus {
+			border-color: #2f80ed;
+			box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.13);
+			outline: none;
+		}
+
 		select {
 			margin-bottom: 14px;
 		}
@@ -111,13 +154,15 @@
 		}
 
 		.question {
-			border-top: 1px solid #edf1f6;
-			padding-top: 12px;
+			border: 1px solid #edf1f6;
+			border-radius: 8px;
+			background: #fbfdff;
+			padding: 12px;
 		}
 
 		.question:first-child {
-			border-top: 0;
-			padding-top: 0;
+			border-color: #cfe1f6;
+			background: #f4f9ff;
 		}
 
 		.question-title {
@@ -136,6 +181,11 @@
 				width: min(100% - 24px, 820px);
 				padding: 32px 0;
 			}
+
+			.session-strip {
+				align-items: flex-start;
+				flex-direction: column;
+			}
 		}
 	</style>
 </head>
@@ -145,6 +195,14 @@
 			<h1>Ask a Question</h1>
 			<p class="muted">Send a question to your professor during class.</p>
 		</header>
+
+		<section class="session-strip" aria-label="Current class status">
+			<div>
+				<p class="session-title">CS 101 is in session</p>
+				<p class="session-meta">Professor Lee is taking questions until 10:45 AM.</p>
+			</div>
+			<span class="status-pill">Live now</span>
+		</section>
 
 		<section class="panel" aria-labelledby="ask-heading">
 			<h2 id="ask-heading">New Question</h2>
