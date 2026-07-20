@@ -137,6 +137,52 @@
 				padding: 32px 0;
 			}
 		}
+
+		.modal-overlay {
+			position: fixed;
+			inset: 0;
+			display: none;
+			align-items: center;
+			justify-content: center;
+			padding: 16px;
+			background: rgba(23, 32, 51, 0.45);
+		}
+
+		.modal-overlay[data-open="true"] {
+			display: flex;
+		}
+
+		.modal {
+			width: min(420px, 100%);
+			border-radius: 12px;
+			background: #ffffff;
+			box-shadow: 0 12px 40px rgba(23, 32, 51, 0.25);
+			padding: 24px;
+			text-align: center;
+		}
+
+		.modal-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 44px;
+			height: 44px;
+			margin-bottom: 12px;
+			border-radius: 999px;
+			background: #e3f0ff;
+			color: #175da8;
+			font-size: 1.4rem;
+			font-weight: 800;
+		}
+
+		.modal h2 {
+			margin-bottom: 6px;
+		}
+
+		.modal button {
+			margin-top: 18px;
+			width: 100%;
+		}
 	</style>
 </head>
 <body>
@@ -158,9 +204,18 @@
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
 
-				<button type="button">Submit Question</button>
+				<button type="button" id="submit-question">Submit Question</button>
 			</form>
 		</section>
+
+		<div class="modal-overlay" id="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+			<div class="modal">
+				<span class="modal-icon" aria-hidden="true">✓</span>
+				<h2 id="confirm-title">Question sent</h2>
+				<p class="muted">Your professor will see it in the live queue for this class.</p>
+				<button type="button" id="confirm-close">Done</button>
+			</div>
+		</div>
 
 		<section class="panel" aria-labelledby="recent-heading">
 			<h2 id="recent-heading">Recent Questions</h2>
@@ -176,5 +231,18 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		(function () {
+			var modal = document.getElementById("confirm-modal");
+			var open = function () { modal.setAttribute("data-open", "true"); };
+			var close = function () { modal.removeAttribute("data-open"); };
+			document.getElementById("submit-question").addEventListener("click", open);
+			document.getElementById("confirm-close").addEventListener("click", close);
+			modal.addEventListener("click", function (event) {
+				if (event.target === modal) close();
+			});
+		})();
+	</script>
 </body>
 </html>
