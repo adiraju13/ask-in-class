@@ -70,6 +70,24 @@
 			font-weight: 700;
 		}
 
+		.anon-row {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			margin-top: 14px;
+		}
+
+		.anon-row label {
+			margin-bottom: 0;
+			font-weight: 400;
+		}
+
+		.anon-note {
+			margin-top: 6px;
+			margin-bottom: 14px;
+			font-size: 0.85rem;
+		}
+
 		select,
 		textarea {
 			width: 100%;
@@ -157,6 +175,12 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+
+				<div class="anon-row">
+					<input type="checkbox" id="anonymous" name="anonymous">
+					<label for="anonymous">Ask anonymously</label>
+				</div>
+				<p class="anon-note muted">Your professor sees the question, but not your name.</p>
 
 				<button type="button">Submit Question</button>
 			</form>
