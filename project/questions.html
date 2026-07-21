@@ -3,12 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>AskInClass - Questions</title>
+	<title>AskInClass - Classroom Questions</title>
 	<style>
 		:root {
 			font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-			background: #f6f8fb;
+			background: #f4f6fb;
 			color: #172033;
+			font-synthesis: none;
 		}
 
 		* {
@@ -17,92 +18,525 @@
 
 		body {
 			margin: 0;
-			background: #f6f8fb;
+			min-width: 320px;
+			background:
+				radial-gradient(circle at top left, rgba(83, 99, 255, 0.08), transparent 360px),
+				#f4f6fb;
+		}
+
+		button,
+		select,
+		textarea {
+			font: inherit;
+		}
+
+		button,
+		select {
+			cursor: pointer;
+		}
+
+		.topbar {
+			position: sticky;
+			top: 0;
+			z-index: 10;
+			border-bottom: 1px solid #e4e8f1;
+			background: rgba(255, 255, 255, 0.94);
+			backdrop-filter: blur(12px);
+		}
+
+		.topbar-inner {
+			display: flex;
+			width: min(1180px, calc(100% - 40px));
+			height: 68px;
+			margin: 0 auto;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.brand {
+			display: inline-flex;
+			gap: 10px;
+			align-items: center;
+			color: #15203b;
+			font-size: 1.05rem;
+			font-weight: 850;
+			letter-spacing: -0.02em;
+			text-decoration: none;
+		}
+
+		.brand-mark {
+			display: grid;
+			width: 34px;
+			height: 34px;
+			border-radius: 10px;
+			background: linear-gradient(135deg, #5363ff, #7957e8);
+			box-shadow: 0 8px 18px rgba(83, 99, 255, 0.24);
+			color: #ffffff;
+			place-items: center;
+		}
+
+		.topbar-actions {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+		}
+
+		.icon-button {
+			display: grid;
+			width: 38px;
+			height: 38px;
+			border: 1px solid #e0e5ef;
+			border-radius: 10px;
+			background: #ffffff;
+			color: #59637a;
+			place-items: center;
+		}
+
+		.avatar {
+			display: grid;
+			width: 38px;
+			height: 38px;
+			border-radius: 50%;
+			background: #202a44;
+			color: #ffffff;
+			font-size: 0.82rem;
+			font-weight: 800;
+			place-items: center;
 		}
 
 		main {
-			width: min(820px, calc(100% - 32px));
+			width: min(1180px, calc(100% - 40px));
 			margin: 0 auto;
-			padding: 44px 0;
+			padding: 32px 0 56px;
 		}
 
-		.header {
-			margin-bottom: 20px;
+		.breadcrumb {
+			margin: 0 0 14px;
+			color: #6b7488;
+			font-size: 0.88rem;
+			font-weight: 650;
+		}
+
+		.session-hero {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 32px;
+			align-items: center;
+			border: 1px solid rgba(255, 255, 255, 0.55);
+			border-radius: 20px;
+			background: linear-gradient(120deg, #1f2e57 0%, #344a89 62%, #5363ff 100%);
+			box-shadow: 0 18px 42px rgba(31, 46, 87, 0.17);
+			color: #ffffff;
+			overflow: hidden;
+			padding: 28px 30px;
+		}
+
+		.session-copy {
+			position: relative;
+			z-index: 1;
+		}
+
+		.eyebrow {
+			display: inline-flex;
+			gap: 7px;
+			align-items: center;
+			margin: 0 0 10px;
+			color: #cdd7ff;
+			font-size: 0.78rem;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.live-dot {
+			width: 8px;
+			height: 8px;
+			border: 2px solid rgba(255, 255, 255, 0.6);
+			border-radius: 50%;
+			background: #62e6a7;
+			box-shadow: 0 0 0 4px rgba(98, 230, 167, 0.13);
 		}
 
 		h1,
 		h2,
+		h3,
 		p {
 			margin-top: 0;
 		}
 
 		h1 {
 			margin-bottom: 8px;
-			font-size: 2rem;
-			letter-spacing: 0;
+			font-size: clamp(1.8rem, 4vw, 2.5rem);
+			letter-spacing: -0.04em;
+			line-height: 1.08;
 		}
 
-		h2 {
-			margin-bottom: 14px;
-			font-size: 1.1rem;
-			letter-spacing: 0;
+		.session-copy > p:last-child {
+			max-width: 590px;
+			margin-bottom: 0;
+			color: #dbe3ff;
+			line-height: 1.55;
 		}
 
-		.muted {
-			color: #5d667a;
+		.session-stats {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(94px, 1fr));
+			border: 1px solid rgba(255, 255, 255, 0.16);
+			border-radius: 14px;
+			background: rgba(10, 20, 51, 0.24);
+			backdrop-filter: blur(8px);
+			overflow: hidden;
 		}
 
-		.panel {
-			border: 1px solid #dfe5ef;
-			border-radius: 8px;
+		.stat {
+			min-width: 102px;
+			padding: 15px 17px;
+			text-align: center;
+		}
+
+		.stat + .stat {
+			border-left: 1px solid rgba(255, 255, 255, 0.13);
+		}
+
+		.stat strong,
+		.stat span {
+			display: block;
+		}
+
+		.stat strong {
+			margin-bottom: 3px;
+			font-size: 1.35rem;
+			letter-spacing: -0.04em;
+		}
+
+		.stat span {
+			color: #cbd4f5;
+			font-size: 0.75rem;
+			font-weight: 700;
+			white-space: nowrap;
+		}
+
+		.workspace-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1.55fr) minmax(290px, 0.75fr);
+			gap: 22px;
+			align-items: start;
+			margin-top: 22px;
+		}
+
+		.card {
+			border: 1px solid #e0e5ef;
+			border-radius: 16px;
 			background: #ffffff;
-			box-shadow: 0 1px 2px rgba(23, 32, 51, 0.05);
-			padding: 20px;
+			box-shadow: 0 8px 24px rgba(32, 42, 68, 0.055);
 		}
 
-		.panel + .panel {
-			margin-top: 16px;
+		.card-header {
+			display: flex;
+			gap: 16px;
+			align-items: flex-start;
+			justify-content: space-between;
+			padding: 21px 22px 0;
 		}
 
-		label {
+		.card-header h2 {
+			margin-bottom: 5px;
+			font-size: 1.15rem;
+			letter-spacing: -0.02em;
+		}
+
+		.subtle {
+			margin-bottom: 0;
+			color: #6c758a;
+			font-size: 0.9rem;
+			line-height: 1.5;
+		}
+
+		.composer-body {
+			padding: 20px 22px 22px;
+		}
+
+		.form-row {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) 180px;
+			gap: 14px;
+		}
+
+		.field label {
 			display: block;
 			margin-bottom: 8px;
-			font-weight: 700;
+			color: #374057;
+			font-size: 0.82rem;
+			font-weight: 800;
 		}
 
 		select,
 		textarea {
 			width: 100%;
-			border: 1px solid #cfd7e5;
-			border-radius: 8px;
-			background: #ffffff;
+			border: 1px solid #d7ddea;
+			border-radius: 10px;
+			background: #fbfcff;
 			color: #172033;
-			font: inherit;
-			padding: 11px 12px;
+			outline: none;
+			transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
 		}
 
 		select {
-			margin-bottom: 14px;
+			height: 43px;
+			padding: 0 12px;
 		}
 
 		textarea {
-			min-height: 110px;
+			min-height: 130px;
+			line-height: 1.55;
+			padding: 13px 14px;
 			resize: vertical;
 		}
 
-		button {
-			margin-top: 14px;
-			border: 0;
-			border-radius: 8px;
-			background: #175da8;
-			color: #ffffff;
-			cursor: pointer;
-			font: inherit;
+		select:focus,
+		textarea:focus {
+			border-color: #6473ff;
+			background: #ffffff;
+			box-shadow: 0 0 0 4px rgba(83, 99, 255, 0.12);
+		}
+
+		.question-field {
+			margin-top: 15px;
+		}
+
+		.field-footer,
+		.composer-actions {
+			display: flex;
+			gap: 14px;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.field-footer {
+			margin-top: 7px;
+			color: #81899b;
+			font-size: 0.78rem;
+		}
+
+		.composer-actions {
+			margin-top: 17px;
+		}
+
+		.anonymous-option {
+			display: inline-flex;
+			gap: 8px;
+			align-items: center;
+			color: #4f586d;
+			font-size: 0.86rem;
 			font-weight: 700;
-			padding: 11px 15px;
+		}
+
+		.anonymous-option input {
+			width: 16px;
+			height: 16px;
+			accent-color: #5363ff;
+		}
+
+		.primary-button {
+			border: 0;
+			border-radius: 10px;
+			background: linear-gradient(135deg, #5363ff, #6654dc);
+			box-shadow: 0 8px 18px rgba(83, 99, 255, 0.23);
+			color: #ffffff;
+			font-weight: 800;
+			padding: 11px 17px;
+		}
+
+		.queue-card {
+			margin-top: 22px;
+		}
+
+		.queue-toolbar {
+			display: flex;
+			gap: 8px;
+			padding: 18px 22px 0;
+			overflow-x: auto;
+		}
+
+		.filter-chip {
+			border: 1px solid #dfe4ee;
+			border-radius: 999px;
+			background: #ffffff;
+			color: #596277;
+			font-size: 0.8rem;
+			font-weight: 750;
+			padding: 7px 11px;
+			white-space: nowrap;
+		}
+
+		.filter-chip.active {
+			border-color: #d8dcff;
+			background: #eef0ff;
+			color: #4352d3;
 		}
 
 		.question-list {
+			margin: 0;
+			padding: 8px 22px 12px;
+			list-style: none;
+		}
+
+		.question-item {
+			display: grid;
+			grid-template-columns: 48px minmax(0, 1fr) auto;
+			gap: 14px;
+			align-items: start;
+			padding: 18px 0;
+		}
+
+		.question-item + .question-item {
+			border-top: 1px solid #edf0f5;
+		}
+
+		.vote-button {
+			display: grid;
+			gap: 1px;
+			width: 46px;
+			border: 1px solid #dfe4ef;
+			border-radius: 10px;
+			background: #f9faff;
+			color: #566076;
+			font-size: 0.73rem;
+			font-weight: 800;
+			padding: 7px 0;
+			place-items: center;
+		}
+
+		.vote-button strong {
+			font-size: 0.92rem;
+		}
+
+		.question-content h3 {
+			margin-bottom: 7px;
+			font-size: 0.98rem;
+			font-weight: 800;
+			line-height: 1.45;
+		}
+
+		.question-meta {
+			display: flex;
+			gap: 8px;
+			align-items: center;
+			margin-bottom: 0;
+			color: #858da0;
+			font-size: 0.77rem;
+		}
+
+		.meta-tag,
+		.status {
+			display: inline-flex;
+			align-items: center;
+			border-radius: 999px;
+			font-weight: 800;
+		}
+
+		.meta-tag {
+			background: #f0f2f7;
+			color: #687186;
+			padding: 3px 7px;
+		}
+
+		.status {
+			margin-top: 2px;
+			font-size: 0.72rem;
+			padding: 5px 8px;
+			white-space: nowrap;
+		}
+
+		.status.next {
+			background: #fff1d6;
+			color: #905a08;
+		}
+
+		.status.answered {
+			background: #e5f8ed;
+			color: #197044;
+		}
+
+		.answer {
+			margin: 12px 0 0;
+			border-left: 3px solid #91a0ff;
+			border-radius: 0 8px 8px 0;
+			background: #f5f6ff;
+			color: #45506a;
+			font-size: 0.85rem;
+			line-height: 1.5;
+			padding: 10px 12px;
+		}
+
+		.sidebar {
+			display: grid;
+			gap: 18px;
+		}
+
+		.sidebar-card {
+			padding: 20px;
+		}
+
+		.sidebar-card h2 {
+			margin-bottom: 15px;
+			font-size: 1rem;
+			letter-spacing: -0.02em;
+		}
+
+		.progress-label {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 8px;
+			color: #50596e;
+			font-size: 0.82rem;
+			font-weight: 750;
+		}
+
+		.progress-track {
+			height: 8px;
+			border-radius: 999px;
+			background: #edf0f6;
+			overflow: hidden;
+		}
+
+		.progress-value {
+			width: 68%;
+			height: 100%;
+			border-radius: inherit;
+			background: linear-gradient(90deg, #62cda1, #5363ff);
+		}
+
+		.topic-list {
+			display: grid;
+			gap: 11px;
+			margin: 17px 0 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.topic-list li {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			color: #4e576d;
+			font-size: 0.86rem;
+		}
+
+		.topic-number {
+			display: grid;
+			width: 27px;
+			height: 27px;
+			border-radius: 8px;
+			background: #eff1ff;
+			color: #5363dc;
+			font-size: 0.75rem;
+			font-weight: 850;
+			place-items: center;
+		}
+
+		.guideline-list {
 			display: grid;
 			gap: 12px;
 			margin: 0;
@@ -110,71 +544,274 @@
 			list-style: none;
 		}
 
-		.question {
-			border-top: 1px solid #edf1f6;
-			padding-top: 12px;
+		.guideline-list li {
+			display: grid;
+			grid-template-columns: 22px minmax(0, 1fr);
+			gap: 9px;
+			color: #5f687d;
+			font-size: 0.85rem;
+			line-height: 1.45;
 		}
 
-		.question:first-child {
-			border-top: 0;
-			padding-top: 0;
+		.check {
+			display: grid;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background: #e8f8ef;
+			color: #1b7b4c;
+			font-size: 0.7rem;
+			font-weight: 900;
+			place-items: center;
 		}
 
-		.question-title {
-			margin-bottom: 5px;
-			font-weight: 750;
+		.next-class {
+			border-color: #dfe3ff;
+			background: linear-gradient(145deg, #f4f5ff, #ffffff);
 		}
 
-		.question-meta {
-			margin-bottom: 0;
-			color: #697386;
-			font-size: 0.92rem;
+		.next-class-time {
+			margin-bottom: 7px;
+			color: #4352d3;
+			font-size: 1.3rem;
+			font-weight: 850;
+			letter-spacing: -0.03em;
 		}
 
-		@media (max-width: 620px) {
+		@media (max-width: 920px) {
+			.session-hero {
+				grid-template-columns: 1fr;
+			}
+
+			.session-stats {
+				width: 100%;
+			}
+
+			.workspace-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.sidebar {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.sidebar .next-class {
+				grid-column: 1 / -1;
+			}
+		}
+
+		@media (max-width: 640px) {
+			.topbar-inner,
 			main {
-				width: min(100% - 24px, 820px);
-				padding: 32px 0;
+				width: min(100% - 24px, 1180px);
+			}
+
+			main {
+				padding-top: 22px;
+			}
+
+			.session-hero {
+				gap: 22px;
+				border-radius: 16px;
+				padding: 23px 20px;
+			}
+
+			.stat {
+				min-width: 0;
+				padding: 13px 8px;
+			}
+
+			.stat strong {
+				font-size: 1.15rem;
+			}
+
+			.stat span {
+				font-size: 0.66rem;
+			}
+
+			.form-row,
+			.sidebar {
+				grid-template-columns: 1fr;
+			}
+
+			.sidebar .next-class {
+				grid-column: auto;
+			}
+
+			.card-header,
+			.composer-actions {
+				align-items: stretch;
+				flex-direction: column;
+			}
+
+			.primary-button {
+				width: 100%;
+			}
+
+			.question-item {
+				grid-template-columns: 42px minmax(0, 1fr);
+			}
+
+			.question-item .status {
+				grid-column: 2;
+				justify-self: start;
+			}
+
+			.question-list,
+			.queue-toolbar,
+			.card-header,
+			.composer-body {
+				padding-right: 17px;
+				padding-left: 17px;
 			}
 		}
 	</style>
 </head>
 <body>
+	<header class="topbar">
+		<div class="topbar-inner">
+			<a class="brand" href="#" aria-label="AskInClass home">
+				<span class="brand-mark">Q</span>
+				AskInClass
+			</a>
+			<div class="topbar-actions">
+				<button class="icon-button" type="button" aria-label="View notifications">●</button>
+				<span class="avatar" aria-label="Student profile">AJ</span>
+			</div>
+		</div>
+	</header>
+
 	<main>
-		<header class="header">
-			<h1>Ask a Question</h1>
-			<p class="muted">Send a question to your professor during class.</p>
-		</header>
+		<p class="breadcrumb">My classes&nbsp; / &nbsp;CS 101&nbsp; / &nbsp;Live session</p>
 
-		<section class="panel" aria-labelledby="ask-heading">
-			<h2 id="ask-heading">New Question</h2>
-			<form>
-				<label for="class-select">Class</label>
-				<select id="class-select" name="class">
-					<option>CS 101</option>
-					<option>MATH 240</option>
-				</select>
-
-				<label for="question">Question</label>
-				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
-
-				<button type="button">Submit Question</button>
-			</form>
+		<section class="session-hero" aria-labelledby="session-heading">
+			<div class="session-copy">
+				<p class="eyebrow"><span class="live-dot"></span>Live now · Week 6</p>
+				<h1 id="session-heading">Introduction to Computer Science</h1>
+				<p>Professor Lee is covering recursion and call stacks. Ask a question or vote for one already in the queue.</p>
+			</div>
+			<div class="session-stats" aria-label="Session activity">
+				<div class="stat"><strong>26m</strong><span>remaining</span></div>
+				<div class="stat"><strong>8</strong><span>in queue</span></div>
+				<div class="stat"><strong>14</strong><span>answered</span></div>
+			</div>
 		</section>
 
-		<section class="panel" aria-labelledby="recent-heading">
-			<h2 id="recent-heading">Recent Questions</h2>
-			<ul class="question-list">
-				<li class="question">
-					<p class="question-title">Can you explain recursion one more time?</p>
-					<p class="question-meta">CS 101 · asked 3 minutes ago</p>
-				</li>
-				<li class="question">
-					<p class="question-title">Will today's examples be posted after class?</p>
-					<p class="question-meta">CS 101 · asked 8 minutes ago</p>
-				</li>
-			</ul>
-		</section>
+		<div class="workspace-grid">
+			<div>
+				<section class="card" aria-labelledby="ask-heading">
+					<div class="card-header">
+						<div>
+							<h2 id="ask-heading">Ask the class</h2>
+							<p class="subtle">Your question joins the live queue for Professor Lee.</p>
+						</div>
+					</div>
+					<form class="composer-body">
+						<div class="form-row">
+							<div class="field">
+								<label for="class-select">Class</label>
+								<select id="class-select" name="class">
+									<option>CS 101 · Introduction to Computer Science</option>
+									<option>MATH 240 · Discrete Mathematics</option>
+								</select>
+							</div>
+							<div class="field">
+								<label for="topic-select">Topic</label>
+								<select id="topic-select" name="topic">
+									<option>Recursion</option>
+									<option>Call stacks</option>
+									<option>Course logistics</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="field question-field">
+							<label for="question">Your question</label>
+							<textarea id="question" name="question" maxlength="280" placeholder="What would you like Professor Lee to explain?"></textarea>
+							<div class="field-footer">
+								<span>Be specific so classmates can find and vote on it.</span>
+								<span>0 / 280</span>
+							</div>
+						</div>
+
+						<div class="composer-actions">
+							<label class="anonymous-option"><input type="checkbox" name="anonymous"> Ask anonymously</label>
+							<button class="primary-button" type="button">Submit question</button>
+						</div>
+					</form>
+				</section>
+
+				<section class="card queue-card" aria-labelledby="queue-heading">
+					<div class="card-header">
+						<div>
+							<h2 id="queue-heading">Live question queue</h2>
+							<p class="subtle">Vote for questions you want answered next.</p>
+						</div>
+					</div>
+					<div class="queue-toolbar" aria-label="Filter questions">
+						<button class="filter-chip active" type="button">All questions · 8</button>
+						<button class="filter-chip" type="button">Popular</button>
+						<button class="filter-chip" type="button">Answered</button>
+						<button class="filter-chip" type="button">My questions</button>
+					</div>
+					<ul class="question-list">
+						<li class="question-item">
+							<button class="vote-button" type="button" aria-label="Vote for this question">▲ <strong>12</strong></button>
+							<div class="question-content">
+								<h3>Can you walk through what happens in memory during each recursive call?</h3>
+								<p class="question-meta"><span class="meta-tag">Recursion</span><span>Anonymous</span><span>2 min ago</span></p>
+							</div>
+							<span class="status next">Up next</span>
+						</li>
+						<li class="question-item">
+							<button class="vote-button" type="button" aria-label="Vote for this question">▲ <strong>9</strong></button>
+							<div class="question-content">
+								<h3>When should we use recursion instead of a loop?</h3>
+								<p class="question-meta"><span class="meta-tag">Recursion</span><span>Maya R.</span><span>5 min ago</span></p>
+								<p class="answer"><strong>Professor Lee:</strong> Great question—we'll compare both approaches after this example.</p>
+							</div>
+							<span class="status answered">Answered</span>
+						</li>
+						<li class="question-item">
+							<button class="vote-button" type="button" aria-label="Vote for this question">▲ <strong>6</strong></button>
+							<div class="question-content">
+								<h3>Will the base case always be the first condition in a recursive function?</h3>
+								<p class="question-meta"><span class="meta-tag">Call stacks</span><span>Jordan K.</span><span>7 min ago</span></p>
+							</div>
+							<span class="status next">Queued</span>
+						</li>
+					</ul>
+				</section>
+			</div>
+
+			<aside class="sidebar" aria-label="Class session details">
+				<section class="card sidebar-card">
+					<h2>Today's progress</h2>
+					<div class="progress-label"><span>Session complete</span><strong>68%</strong></div>
+					<div class="progress-track"><div class="progress-value"></div></div>
+					<ul class="topic-list">
+						<li><span class="topic-number">1</span>Recursive thinking</li>
+						<li><span class="topic-number">2</span>Base cases</li>
+						<li><span class="topic-number">3</span>Call stack walkthrough</li>
+					</ul>
+				</section>
+
+				<section class="card sidebar-card">
+					<h2>Good questions are...</h2>
+					<ul class="guideline-list">
+						<li><span class="check">✓</span><span>Focused on one concept at a time</span></li>
+						<li><span class="check">✓</span><span>Clear enough for classmates to understand</span></li>
+						<li><span class="check">✓</span><span>Free of personal or sensitive information</span></li>
+					</ul>
+				</section>
+
+				<section class="card sidebar-card next-class">
+					<h2>Next class</h2>
+					<p class="next-class-time">Thursday · 10:00 AM</p>
+					<p class="subtle">CS 101 · Trees and graph traversal</p>
+				</section>
+			</aside>
+		</div>
 	</main>
 </body>
 </html>
