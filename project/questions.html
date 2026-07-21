@@ -102,6 +102,44 @@
 			padding: 11px 15px;
 		}
 
+		.success-modal {
+			width: min(400px, calc(100% - 32px));
+			border: 0;
+			border-radius: 18px;
+			box-shadow: 0 24px 70px rgba(23, 32, 51, 0.24);
+			padding: 30px;
+			text-align: center;
+		}
+
+		.success-modal::backdrop {
+			background: rgba(23, 32, 51, 0.48);
+			backdrop-filter: blur(3px);
+		}
+
+		.success-icon {
+			display: grid;
+			width: 58px;
+			height: 58px;
+			margin: 0 auto 16px;
+			border-radius: 50%;
+			background: #e7f8ef;
+			color: #168052;
+			font-size: 1.7rem;
+			font-weight: 900;
+			place-items: center;
+		}
+
+		.success-modal h2 {
+			margin-bottom: 8px;
+			font-size: 1.45rem;
+		}
+
+		.success-modal p {
+			margin-bottom: 4px;
+			color: #5d667a;
+			line-height: 1.5;
+		}
+
 		.question-list {
 			display: grid;
 			gap: 12px;
@@ -158,7 +196,7 @@
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
 
-				<button type="button">Submit Question</button>
+				<button id="submit-question" type="button">Submit Question</button>
 			</form>
 		</section>
 
@@ -176,5 +214,18 @@
 			</ul>
 		</section>
 	</main>
+
+	<dialog class="success-modal" id="success-modal">
+		<div class="success-icon">✓</div>
+		<h2>Success! Great question.</h2>
+		<p>You're doing a great job staying curious. Keep it up—you've got this!</p>
+		<button id="close-success" type="button">Back to class</button>
+	</dialog>
+
+	<script>
+		const successModal = document.querySelector("#success-modal");
+		document.querySelector("#submit-question").addEventListener("click", () => successModal.showModal());
+		document.querySelector("#close-success").addEventListener("click", () => successModal.close());
+	</script>
 </body>
 </html>
