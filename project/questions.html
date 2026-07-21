@@ -102,6 +102,35 @@
 			padding: 11px 15px;
 		}
 
+		.form-footer {
+			display: flex;
+			gap: 14px;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 14px;
+		}
+
+		.form-footer button {
+			margin-top: 0;
+		}
+
+		.draft-status {
+			display: inline-flex;
+			gap: 7px;
+			align-items: center;
+			color: #697386;
+			font-size: 0.82rem;
+			font-weight: 650;
+		}
+
+		.draft-status::before {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: #22a06b;
+			content: "";
+		}
+
 		.question-list {
 			display: grid;
 			gap: 12px;
@@ -158,7 +187,10 @@
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
 
-				<button type="button">Submit Question</button>
+				<div class="form-footer">
+					<span class="draft-status">Draft saved</span>
+					<button type="button">Submit Question</button>
+				</div>
 			</form>
 		</section>
 
