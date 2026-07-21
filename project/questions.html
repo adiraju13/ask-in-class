@@ -110,6 +110,29 @@
 			list-style: none;
 		}
 
+		.search-label {
+			margin-bottom: 7px;
+			color: #5d667a;
+			font-size: 0.82rem;
+		}
+
+		.question-search {
+			width: 100%;
+			margin-bottom: 16px;
+			border: 1px solid #cfd7e5;
+			border-radius: 8px;
+			background: #fbfcff;
+			color: #172033;
+			font: inherit;
+			padding: 10px 12px;
+		}
+
+		.question-search:focus {
+			border-color: #2f80ed;
+			box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.13);
+			outline: none;
+		}
+
 		.question {
 			border-top: 1px solid #edf1f6;
 			padding-top: 12px;
@@ -164,6 +187,8 @@
 
 		<section class="panel" aria-labelledby="recent-heading">
 			<h2 id="recent-heading">Recent Questions</h2>
+			<label class="search-label" for="question-search">Find a question</label>
+			<input class="question-search" id="question-search" type="search" placeholder="Search recent questions">
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
@@ -176,5 +201,17 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const searchInput = document.querySelector("#question-search");
+		const questions = document.querySelectorAll(".question");
+
+		searchInput.addEventListener("input", () => {
+			const query = searchInput.value.toLowerCase();
+			questions.forEach((question) => {
+				question.hidden = !question.textContent.toLowerCase().includes(query);
+			});
+		});
+	</script>
 </body>
 </html>
