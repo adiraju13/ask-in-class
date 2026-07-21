@@ -64,6 +64,40 @@
 			margin-top: 16px;
 		}
 
+		.office-hours {
+			display: flex;
+			gap: 16px;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 16px;
+			border: 1px solid #d8e2fb;
+			border-radius: 8px;
+			background: #f2f6ff;
+			padding: 14px 16px;
+		}
+
+		.office-hours strong,
+		.office-hours span {
+			display: block;
+		}
+
+		.office-hours strong {
+			margin-bottom: 3px;
+		}
+
+		.office-hours span {
+			color: #5d667a;
+			font-size: 0.88rem;
+		}
+
+		.office-hours button {
+			margin-top: 0;
+			background: #ffffff;
+			box-shadow: inset 0 0 0 1px #b9c8ed;
+			color: #315aaf;
+			white-space: nowrap;
+		}
+
 		label {
 			display: block;
 			margin-bottom: 8px;
@@ -136,6 +170,11 @@
 				width: min(100% - 24px, 820px);
 				padding: 32px 0;
 			}
+
+			.office-hours {
+				align-items: stretch;
+				flex-direction: column;
+			}
 		}
 	</style>
 </head>
@@ -161,6 +200,14 @@
 				<button type="button">Submit Question</button>
 			</form>
 		</section>
+
+		<aside class="office-hours" aria-label="Upcoming office hours">
+			<div>
+				<strong>Still have questions?</strong>
+				<span>Professor Lee's office hours are today from 3–5 PM.</span>
+			</div>
+			<button type="button">Add reminder</button>
+		</aside>
 
 		<section class="panel" aria-labelledby="recent-heading">
 			<h2 id="recent-heading">Recent Questions</h2>
