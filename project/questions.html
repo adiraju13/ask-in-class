@@ -90,6 +90,43 @@
 			resize: vertical;
 		}
 
+		.guidelines {
+			margin-top: 12px;
+			border: 1px solid #dfe5ef;
+			border-radius: 8px;
+			background: #f9fbff;
+			padding: 10px 12px;
+		}
+
+		.guidelines summary {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			color: #445069;
+			cursor: pointer;
+			font-size: 0.86rem;
+			font-weight: 750;
+			list-style: none;
+		}
+
+		.guidelines summary::after {
+			color: #315aaf;
+			content: "+";
+			font-size: 1.1rem;
+		}
+
+		.guidelines[open] summary::after {
+			content: "−";
+		}
+
+		.guidelines ul {
+			margin: 10px 0 2px;
+			color: #697386;
+			font-size: 0.82rem;
+			line-height: 1.55;
+			padding-left: 20px;
+		}
+
 		button {
 			margin-top: 14px;
 			border: 0;
@@ -157,6 +194,14 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<details class="guidelines">
+					<summary>Tips for a great question</summary>
+					<ul>
+						<li>Ask about one concept at a time.</li>
+						<li>Include the step where you got stuck.</li>
+						<li>Keep personal information out of your question.</li>
+					</ul>
+				</details>
 
 				<button type="button">Submit Question</button>
 			</form>
