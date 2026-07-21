@@ -102,6 +102,50 @@
 			padding: 11px 15px;
 		}
 
+		.topic-picker {
+			margin: 14px 0 0;
+			border: 0;
+			padding: 0;
+		}
+
+		.topic-picker legend {
+			margin-bottom: 8px;
+			color: #5d667a;
+			font-size: 0.82rem;
+			font-weight: 700;
+		}
+
+		.topic-chips {
+			display: flex;
+			gap: 8px;
+			flex-wrap: wrap;
+		}
+
+		.topic-chip {
+			display: inline-flex;
+			gap: 6px;
+			align-items: center;
+			border: 1px solid #d8e0ed;
+			border-radius: 999px;
+			background: #f8faff;
+			color: #445069;
+			cursor: pointer;
+			font-size: 0.82rem;
+			font-weight: 700;
+			padding: 7px 10px;
+		}
+
+		.topic-chip:has(input:checked) {
+			border-color: #7a8ef0;
+			background: #edf1ff;
+			color: #304aa8;
+		}
+
+		.topic-chip input {
+			margin: 0;
+			accent-color: #5368d8;
+		}
+
 		.question-list {
 			display: grid;
 			gap: 12px;
@@ -157,6 +201,15 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+
+				<fieldset class="topic-picker">
+					<legend>What kind of help do you need?</legend>
+					<div class="topic-chips">
+						<label class="topic-chip"><input type="radio" name="question-type" checked> Concept</label>
+						<label class="topic-chip"><input type="radio" name="question-type"> Example</label>
+						<label class="topic-chip"><input type="radio" name="question-type"> Assignment</label>
+					</div>
+				</fieldset>
 
 				<button type="button">Submit Question</button>
 			</form>
