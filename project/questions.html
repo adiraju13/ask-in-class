@@ -30,6 +30,26 @@
 			margin-bottom: 20px;
 		}
 
+		.title-row {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			margin-bottom: 8px;
+		}
+
+		.title-row h1 {
+			margin-bottom: 0;
+		}
+
+		.live-badge {
+			border-radius: 999px;
+			background: #dcfce7;
+			color: #166534;
+			font-size: 0.78rem;
+			font-weight: 800;
+			padding: 4px 8px;
+		}
+
 		h1,
 		h2,
 		p {
@@ -142,7 +162,10 @@
 <body>
 	<main>
 		<header class="header">
-			<h1>Ask a Question</h1>
+			<div class="title-row">
+				<h1>Ask a Question</h1>
+				<span class="live-badge">Class live</span>
+			</div>
 			<p class="muted">Send a question to your professor during class.</p>
 		</header>
 
