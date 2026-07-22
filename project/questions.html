@@ -102,6 +102,42 @@
 			padding: 11px 15px;
 		}
 
+		.form-actions {
+			display: flex;
+			gap: 9px;
+			justify-content: flex-end;
+			margin-top: 14px;
+		}
+
+		.form-actions button {
+			margin-top: 0;
+		}
+
+		.preview-button {
+			border: 1px solid #b9c6dc;
+			background: #ffffff;
+			color: #40506b;
+		}
+
+		.question-preview {
+			margin-top: 12px;
+			border: 1px solid #cfdcf0;
+			border-radius: 8px;
+			background: #f5f9ff;
+			color: #445069;
+			font-size: 0.9rem;
+			line-height: 1.5;
+			padding: 12px;
+		}
+
+		.question-preview strong {
+			display: block;
+			margin-bottom: 5px;
+			color: #315aaf;
+			font-size: 0.78rem;
+			text-transform: uppercase;
+		}
+
 		.question-list {
 			display: grid;
 			gap: 12px;
@@ -157,8 +193,15 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<div class="question-preview" id="question-preview" hidden>
+					<strong>Question preview</strong>
+					<span id="preview-copy"></span>
+				</div>
 
-				<button type="button">Submit Question</button>
+				<div class="form-actions">
+					<button class="preview-button" id="preview-button" type="button">Preview</button>
+					<button type="button">Submit Question</button>
+				</div>
 			</form>
 		</section>
 
@@ -176,5 +219,15 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const questionField = document.querySelector("#question");
+		const preview = document.querySelector("#question-preview");
+		const previewCopy = document.querySelector("#preview-copy");
+		document.querySelector("#preview-button").addEventListener("click", () => {
+			previewCopy.textContent = questionField.value.trim() || "Your question will appear here.";
+			preview.hidden = false;
+		});
+	</script>
 </body>
 </html>
