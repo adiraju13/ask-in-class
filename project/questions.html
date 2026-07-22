@@ -110,6 +110,67 @@
 			list-style: none;
 		}
 
+		.answering-indicator {
+			display: flex;
+			gap: 11px;
+			align-items: center;
+			margin-bottom: 14px;
+			border: 1px solid #dce6f5;
+			border-radius: 8px;
+			background: #f5f9ff;
+			padding: 10px 12px;
+		}
+
+		.professor-avatar {
+			display: grid;
+			width: 34px;
+			height: 34px;
+			border-radius: 50%;
+			background: #315aaf;
+			color: #ffffff;
+			font-size: 0.75rem;
+			font-weight: 850;
+			place-items: center;
+		}
+
+		.answering-copy {
+			flex: 1;
+			margin-bottom: 0;
+			color: #697386;
+			font-size: 0.8rem;
+		}
+
+		.answering-copy strong {
+			display: block;
+			margin-bottom: 2px;
+			color: #34405a;
+			font-size: 0.86rem;
+		}
+
+		.typing-dots {
+			display: flex;
+			gap: 3px;
+		}
+
+		.typing-dots span {
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			animation: typing 1s infinite alternate;
+			background: #6f83b5;
+		}
+
+		.typing-dots span:nth-child(2) { animation-delay: 150ms; }
+		.typing-dots span:nth-child(3) { animation-delay: 300ms; }
+
+		@keyframes typing {
+			to { transform: translateY(-4px); }
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.typing-dots span { animation: none; }
+		}
+
 		.question {
 			border-top: 1px solid #edf1f6;
 			padding-top: 12px;
@@ -164,6 +225,11 @@
 
 		<section class="panel" aria-labelledby="recent-heading">
 			<h2 id="recent-heading">Recent Questions</h2>
+			<div class="answering-indicator" role="status">
+				<span class="professor-avatar">PL</span>
+				<p class="answering-copy"><strong>Professor Lee is answering</strong>Preparing a response to the top question.</p>
+				<span class="typing-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+			</div>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
