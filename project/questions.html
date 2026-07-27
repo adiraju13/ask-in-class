@@ -102,6 +102,29 @@
 			padding: 11px 15px;
 		}
 
+		.form-actions {
+			display: flex;
+			gap: 9px;
+			justify-content: flex-end;
+			margin-top: 14px;
+		}
+
+		.form-actions button {
+			margin-top: 0;
+		}
+
+		.clear-button {
+			border: 1px solid #c8d1df;
+			background: #ffffff;
+			color: #536078;
+		}
+
+		.clear-button:hover {
+			border-color: #aebbd0;
+			background: #f5f7fb;
+			color: #27344d;
+		}
+
 		.question-list {
 			display: grid;
 			gap: 12px;
@@ -158,7 +181,10 @@
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
 
-				<button type="button">Submit Question</button>
+				<div class="form-actions">
+					<button class="clear-button" id="clear-question" type="button">Clear</button>
+					<button type="button">Submit Question</button>
+				</div>
 			</form>
 		</section>
 
@@ -176,5 +202,13 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const questionField = document.querySelector("#question");
+		document.querySelector("#clear-question").addEventListener("click", () => {
+			questionField.value = "";
+			questionField.focus();
+		});
+	</script>
 </body>
 </html>
