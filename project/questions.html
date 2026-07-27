@@ -137,6 +137,46 @@
 				padding: 32px 0;
 			}
 		}
+
+		.modal-overlay {
+			display: none;
+			position: fixed;
+			inset: 0;
+			align-items: center;
+			justify-content: center;
+			background: rgba(23, 32, 51, 0.45);
+			padding: 16px;
+		}
+
+		.modal-overlay.open {
+			display: flex;
+		}
+
+		.modal {
+			width: min(360px, 100%);
+			border-radius: 10px;
+			background: #ffffff;
+			box-shadow: 0 12px 32px rgba(23, 32, 51, 0.2);
+			padding: 22px;
+		}
+
+		.modal h2 {
+			font-size: 1.15rem;
+		}
+
+		.modal p {
+			color: #5d667a;
+		}
+
+		.modal-actions {
+			display: flex;
+			justify-content: flex-end;
+			margin-top: 18px;
+		}
+
+		.modal-actions button {
+			margin-top: 0;
+		}
 	</style>
 </head>
 <body>
@@ -158,7 +198,7 @@
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
 
-				<button type="button">Submit Question</button>
+				<button type="button" id="submit-question">Submit Question</button>
 			</form>
 		</section>
 
@@ -176,5 +216,25 @@
 			</ul>
 		</section>
 	</main>
+
+	<div class="modal-overlay" id="submit-modal-overlay">
+		<div class="modal" role="dialog" aria-modal="true" aria-labelledby="submit-modal-heading">
+			<h2 id="submit-modal-heading">Question sent</h2>
+			<p>Your professor will see this question during class.</p>
+			<div class="modal-actions">
+				<button type="button" id="submit-modal-close">Done</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const submitModalOverlay = document.querySelector("#submit-modal-overlay");
+		document.querySelector("#submit-question").addEventListener("click", () => {
+			submitModalOverlay.classList.add("open");
+		});
+		document.querySelector("#submit-modal-close").addEventListener("click", () => {
+			submitModalOverlay.classList.remove("open");
+		});
+	</script>
 </body>
 </html>
