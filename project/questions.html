@@ -90,6 +90,25 @@
 			resize: vertical;
 		}
 
+		textarea.invalid {
+			border-color: #c94b3d;
+			box-shadow: 0 0 0 3px rgba(201, 75, 61, 0.12);
+		}
+
+		.validation-message {
+			margin: 9px 0 0;
+			font-size: 0.82rem;
+			font-weight: 700;
+		}
+
+		.validation-message.error {
+			color: #a43d31;
+		}
+
+		.validation-message.success {
+			color: #19704a;
+		}
+
 		button {
 			margin-top: 14px;
 			border: 0;
@@ -157,8 +176,9 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<p class="validation-message" id="validation-message" aria-live="polite" hidden></p>
 
-				<button type="button">Submit Question</button>
+				<button id="submit-question" type="button">Submit Question</button>
 			</form>
 		</section>
 
@@ -176,5 +196,20 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const questionField = document.querySelector("#question");
+		const validationMessage = document.querySelector("#validation-message");
+		document.querySelector("#submit-question").addEventListener("click", () => {
+			const valid = questionField.value.trim().length > 0;
+			questionField.classList.toggle("invalid", !valid);
+			validationMessage.hidden = false;
+			validationMessage.className = `validation-message ${valid ? "success" : "error"}`;
+			validationMessage.textContent = valid
+				? "Your question is ready to submit."
+				: "Please enter a question before submitting.";
+			if (!valid) questionField.focus();
+		});
+	</script>
 </body>
 </html>
