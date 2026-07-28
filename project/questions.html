@@ -131,10 +131,59 @@
 			font-size: 0.92rem;
 		}
 
+		.feedback-card {
+			display: flex;
+			gap: 16px;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.feedback-card h2 {
+			margin-bottom: 4px;
+		}
+
+		.feedback-message {
+			margin-bottom: 0;
+			color: #697386;
+			font-size: 0.84rem;
+		}
+
+		.feedback-actions {
+			display: flex;
+			gap: 7px;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+		}
+
+		.feedback-button {
+			margin-top: 0;
+			border: 1px solid #d8e0ed;
+			border-radius: 999px;
+			background: #ffffff;
+			color: #536078;
+			font-size: 0.78rem;
+			padding: 7px 10px;
+		}
+
+		.feedback-button.selected {
+			border-color: #8295d8;
+			background: #eef2ff;
+			color: #315aaf;
+		}
+
 		@media (max-width: 620px) {
 			main {
 				width: min(100% - 24px, 820px);
 				padding: 32px 0;
+			}
+
+			.feedback-card {
+				align-items: stretch;
+				flex-direction: column;
+			}
+
+			.feedback-actions {
+				justify-content: flex-start;
 			}
 		}
 	</style>
@@ -175,6 +224,28 @@
 				</li>
 			</ul>
 		</section>
+
+		<section class="panel feedback-card" aria-labelledby="feedback-heading">
+			<div>
+				<h2 id="feedback-heading">How is class going?</h2>
+				<p class="feedback-message" id="feedback-message">Share a quick pulse with Professor Lee.</p>
+			</div>
+			<div class="feedback-actions">
+				<button class="feedback-button" type="button">Helpful</button>
+				<button class="feedback-button" type="button">Too fast</button>
+				<button class="feedback-button" type="button">Need an example</button>
+			</div>
+		</section>
 	</main>
+
+	<script>
+		document.querySelectorAll(".feedback-button").forEach((button) => {
+			button.addEventListener("click", () => {
+				document.querySelectorAll(".feedback-button").forEach((item) => item.classList.remove("selected"));
+				button.classList.add("selected");
+				document.querySelector("#feedback-message").textContent = "Thanks—your feedback was shared.";
+			});
+		});
+	</script>
 </body>
 </html>
