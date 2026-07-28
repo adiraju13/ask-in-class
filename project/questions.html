@@ -90,6 +90,35 @@
 			resize: vertical;
 		}
 
+		.starter-label {
+			margin: 10px 0 7px;
+			color: #697386;
+			font-size: 0.8rem;
+			font-weight: 700;
+		}
+
+		.question-starters {
+			display: flex;
+			gap: 7px;
+			flex-wrap: wrap;
+		}
+
+		.starter-button {
+			margin-top: 0;
+			border: 1px solid #d8e0ed;
+			border-radius: 999px;
+			background: #f8faff;
+			color: #536078;
+			font-size: 0.78rem;
+			padding: 6px 9px;
+		}
+
+		.starter-button:hover {
+			border-color: #aebde0;
+			background: #eef2ff;
+			color: #315aaf;
+		}
+
 		button {
 			margin-top: 14px;
 			border: 0;
@@ -157,6 +186,12 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<p class="starter-label">Need a starting point?</p>
+				<div class="question-starters">
+					<button class="starter-button" type="button" data-starter="I'm confused about ">I'm confused about…</button>
+					<button class="starter-button" type="button" data-starter="Can you show another example of ">Show another example…</button>
+					<button class="starter-button" type="button" data-starter="Why does ">Why does…</button>
+				</div>
 
 				<button type="button">Submit Question</button>
 			</form>
@@ -176,5 +211,16 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const questionField = document.querySelector("#question");
+		document.querySelectorAll(".starter-button").forEach((button) => {
+			button.addEventListener("click", () => {
+				questionField.value = button.dataset.starter;
+				questionField.focus();
+				questionField.setSelectionRange(questionField.value.length, questionField.value.length);
+			});
+		});
+	</script>
 </body>
 </html>
