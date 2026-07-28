@@ -110,6 +110,52 @@
 			list-style: none;
 		}
 
+		.recent-header {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 14px;
+		}
+
+		.recent-header h2 {
+			margin-bottom: 0;
+		}
+
+		.print-button {
+			margin-top: 0;
+			border: 1px solid #d4dce9;
+			border-radius: 7px;
+			background: #ffffff;
+			color: #536078;
+			font-size: 0.78rem;
+			padding: 7px 10px;
+		}
+
+		@media print {
+			body * {
+				visibility: hidden;
+			}
+
+			.recent-panel,
+			.recent-panel * {
+				visibility: visible;
+			}
+
+			.recent-panel {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				border: 0;
+				box-shadow: none;
+			}
+
+			.print-button {
+				display: none;
+			}
+		}
+
 		.question {
 			border-top: 1px solid #edf1f6;
 			padding-top: 12px;
@@ -162,8 +208,11 @@
 			</form>
 		</section>
 
-		<section class="panel" aria-labelledby="recent-heading">
-			<h2 id="recent-heading">Recent Questions</h2>
+		<section class="panel recent-panel" aria-labelledby="recent-heading">
+			<div class="recent-header">
+				<h2 id="recent-heading">Recent Questions</h2>
+				<button class="print-button" id="print-questions" type="button">Print questions</button>
+			</div>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
@@ -176,5 +225,9 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		document.querySelector("#print-questions").addEventListener("click", () => window.print());
+	</script>
 </body>
 </html>
