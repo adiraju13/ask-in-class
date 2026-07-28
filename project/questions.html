@@ -131,6 +131,28 @@
 			font-size: 0.92rem;
 		}
 
+		.professor-response {
+			margin-top: 10px;
+			border-left: 3px solid #7f91e8;
+			border-radius: 0 7px 7px 0;
+			background: #f4f6ff;
+			padding: 9px 11px;
+		}
+
+		.professor-response summary {
+			color: #4054ae;
+			cursor: pointer;
+			font-size: 0.82rem;
+			font-weight: 800;
+		}
+
+		.professor-response p {
+			margin: 8px 0 0;
+			color: #536078;
+			font-size: 0.84rem;
+			line-height: 1.5;
+		}
+
 		@media (max-width: 620px) {
 			main {
 				width: min(100% - 24px, 820px);
@@ -172,6 +194,10 @@
 				<li class="question">
 					<p class="question-title">Will today's examples be posted after class?</p>
 					<p class="question-meta">CS 101 · asked 8 minutes ago</p>
+					<details class="professor-response">
+						<summary>View Professor Lee's answer</summary>
+						<p>Yes—today's examples and annotated notes will be posted after class.</p>
+					</details>
 				</li>
 			</ul>
 		</section>
