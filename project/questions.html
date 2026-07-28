@@ -110,6 +110,46 @@
 			list-style: none;
 		}
 
+		.recent-header {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 14px;
+		}
+
+		.recent-header h2 {
+			margin-bottom: 0;
+		}
+
+		.compact-toggle {
+			margin-top: 0;
+			border: 1px solid #d4dce9;
+			border-radius: 7px;
+			background: #ffffff;
+			color: #536078;
+			font-size: 0.78rem;
+			padding: 7px 10px;
+		}
+
+		.compact-toggle[aria-pressed="true"] {
+			border-color: #8295d8;
+			background: #eef2ff;
+			color: #315aaf;
+		}
+
+		.question-list.compact .question {
+			padding-top: 8px;
+		}
+
+		.question-list.compact .question-title {
+			margin-bottom: 0;
+		}
+
+		.question-list.compact .question-meta {
+			display: none;
+		}
+
 		.question {
 			border-top: 1px solid #edf1f6;
 			padding-top: 12px;
@@ -163,7 +203,10 @@
 		</section>
 
 		<section class="panel" aria-labelledby="recent-heading">
-			<h2 id="recent-heading">Recent Questions</h2>
+			<div class="recent-header">
+				<h2 id="recent-heading">Recent Questions</h2>
+				<button class="compact-toggle" id="compact-toggle" type="button" aria-pressed="false">Compact view</button>
+			</div>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
@@ -176,5 +219,15 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const compactToggle = document.querySelector("#compact-toggle");
+		const questionList = document.querySelector(".question-list");
+		compactToggle.addEventListener("click", () => {
+			const compact = questionList.classList.toggle("compact");
+			compactToggle.setAttribute("aria-pressed", String(compact));
+			compactToggle.textContent = compact ? "Comfortable view" : "Compact view";
+		});
+	</script>
 </body>
 </html>
