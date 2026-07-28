@@ -90,6 +90,50 @@
 			resize: vertical;
 		}
 
+		.confidence-selector {
+			margin: 14px 0 0;
+			border: 0;
+			padding: 0;
+		}
+
+		.confidence-selector legend {
+			margin-bottom: 8px;
+			color: #445069;
+			font-size: 0.82rem;
+			font-weight: 800;
+		}
+
+		.confidence-options {
+			display: flex;
+			gap: 8px;
+			flex-wrap: wrap;
+		}
+
+		.confidence-option {
+			display: inline-flex;
+			gap: 6px;
+			align-items: center;
+			margin-bottom: 0;
+			border: 1px solid #d8e0ed;
+			border-radius: 999px;
+			background: #f9fbff;
+			color: #536078;
+			cursor: pointer;
+			font-size: 0.8rem;
+			padding: 7px 10px;
+		}
+
+		.confidence-option:has(input:checked) {
+			border-color: #8295d8;
+			background: #eef2ff;
+			color: #315aaf;
+		}
+
+		.confidence-option input {
+			margin: 0;
+			accent-color: #315aaf;
+		}
+
 		button {
 			margin-top: 14px;
 			border: 0;
@@ -157,6 +201,14 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<fieldset class="confidence-selector">
+					<legend>How confident do you feel about this topic?</legend>
+					<div class="confidence-options">
+						<label class="confidence-option"><input type="radio" name="confidence"> Not yet</label>
+						<label class="confidence-option"><input type="radio" name="confidence" checked> Getting there</label>
+						<label class="confidence-option"><input type="radio" name="confidence"> Confident</label>
+					</div>
+				</fieldset>
 
 				<button type="button">Submit Question</button>
 			</form>
