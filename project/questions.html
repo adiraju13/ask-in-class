@@ -90,6 +90,32 @@
 			resize: vertical;
 		}
 
+		.readiness-status {
+			display: inline-flex;
+			gap: 7px;
+			align-items: center;
+			margin-top: 9px;
+			color: #7a5a18;
+			font-size: 0.8rem;
+			font-weight: 700;
+		}
+
+		.readiness-status::before {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: #d69a24;
+			content: "";
+		}
+
+		.readiness-status.ready {
+			color: #19704a;
+		}
+
+		.readiness-status.ready::before {
+			background: #20a66a;
+		}
+
 		button {
 			margin-top: 14px;
 			border: 0;
@@ -157,6 +183,7 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<div class="readiness-status" id="readiness-status" role="status">Add a little more detail</div>
 
 				<button type="button">Submit Question</button>
 			</form>
@@ -176,5 +203,15 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const questionField = document.querySelector("#question");
+		const readinessStatus = document.querySelector("#readiness-status");
+		questionField.addEventListener("input", () => {
+			const ready = questionField.value.trim().length >= 20;
+			readinessStatus.classList.toggle("ready", ready);
+			readinessStatus.textContent = ready ? "Looks ready to submit" : "Add a little more detail";
+		});
+	</script>
 </body>
 </html>
