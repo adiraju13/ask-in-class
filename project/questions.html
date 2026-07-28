@@ -110,6 +110,31 @@
 			list-style: none;
 		}
 
+		.new-questions-banner {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 14px;
+			border: 1px solid #cdd9f4;
+			border-radius: 8px;
+			background: #eef4ff;
+			color: #315aaf;
+			font-size: 0.86rem;
+			font-weight: 750;
+			padding: 10px 12px;
+		}
+
+		.new-questions-banner button {
+			margin-top: 0;
+			border: 1px solid #b6c5e8;
+			background: #ffffff;
+			color: #315aaf;
+			font-size: 0.8rem;
+			padding: 7px 10px;
+			white-space: nowrap;
+		}
+
 		.question {
 			border-top: 1px solid #edf1f6;
 			padding-top: 12px;
@@ -164,6 +189,10 @@
 
 		<section class="panel" aria-labelledby="recent-heading">
 			<h2 id="recent-heading">Recent Questions</h2>
+			<div class="new-questions-banner" id="new-questions-banner" role="status">
+				<span>2 new questions were just added</span>
+				<button id="show-new-questions" type="button">Show updates</button>
+			</div>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
@@ -176,5 +205,11 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		document.querySelector("#show-new-questions").addEventListener("click", () => {
+			document.querySelector("#new-questions-banner").hidden = true;
+		});
+	</script>
 </body>
 </html>
