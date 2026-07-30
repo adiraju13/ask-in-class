@@ -30,6 +30,56 @@
 			margin-bottom: 20px;
 		}
 
+		.instructor-status {
+			display: inline-flex;
+			gap: 10px;
+			align-items: center;
+			border: 1px solid #dfe5ef;
+			border-radius: 10px;
+			background: #ffffff;
+			box-shadow: 0 1px 2px rgba(23, 32, 51, 0.05);
+			padding: 9px 12px 9px 9px;
+		}
+
+		.instructor-avatar {
+			position: relative;
+			display: grid;
+			width: 34px;
+			height: 34px;
+			border-radius: 50%;
+			background: #dcecff;
+			color: #175da8;
+			font-size: 0.78rem;
+			font-weight: 800;
+			place-items: center;
+		}
+
+		.availability-dot {
+			position: absolute;
+			right: -1px;
+			bottom: -1px;
+			width: 11px;
+			height: 11px;
+			border: 2px solid #ffffff;
+			border-radius: 50%;
+			background: #24a260;
+		}
+
+		.instructor-name,
+		.instructor-availability {
+			display: block;
+		}
+
+		.instructor-name {
+			margin-bottom: 2px;
+			font-size: 0.84rem;
+		}
+
+		.instructor-availability {
+			color: #5d667a;
+			font-size: 0.76rem;
+		}
+
 		h1,
 		h2,
 		p {
@@ -144,6 +194,16 @@
 		<header class="header">
 			<h1>Ask a Question</h1>
 			<p class="muted">Send a question to your professor during class.</p>
+			<div class="instructor-status" aria-label="Professor Lee is available for live questions">
+				<span class="instructor-avatar" aria-hidden="true">
+					PL
+					<span class="availability-dot"></span>
+				</span>
+				<span>
+					<strong class="instructor-name">Professor Lee</strong>
+					<span class="instructor-availability">Available for live questions</span>
+				</span>
+			</div>
 		</header>
 
 		<section class="panel" aria-labelledby="ask-heading">
