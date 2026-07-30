@@ -90,6 +90,97 @@
 			resize: vertical;
 		}
 
+		.similar-questions {
+			margin-top: 12px;
+			overflow: hidden;
+			border: 1px solid #cfe0f5;
+			border-radius: 10px;
+			background: #f7fbff;
+		}
+
+		.similar-header {
+			display: flex;
+			gap: 10px;
+			align-items: flex-start;
+			padding: 13px 14px;
+		}
+
+		.similar-icon {
+			display: grid;
+			flex: 0 0 auto;
+			width: 30px;
+			height: 30px;
+			border-radius: 8px;
+			background: #dcecff;
+			color: #175da8;
+			font-size: 0.92rem;
+			place-items: center;
+		}
+
+		.similar-heading {
+			display: block;
+			margin-bottom: 2px;
+			font-size: 0.92rem;
+		}
+
+		.similar-description {
+			margin-bottom: 0;
+			color: #5d667a;
+			font-size: 0.82rem;
+			line-height: 1.45;
+		}
+
+		.similar-list {
+			margin: 0;
+			padding: 0;
+			border-top: 1px solid #dfeaf6;
+			background: #ffffff;
+			list-style: none;
+		}
+
+		.similar-item {
+			display: flex;
+			gap: 14px;
+			align-items: center;
+			justify-content: space-between;
+			padding: 12px 14px;
+		}
+
+		.similar-item + .similar-item {
+			border-top: 1px solid #edf1f6;
+		}
+
+		.similar-copy {
+			min-width: 0;
+		}
+
+		.similar-title {
+			margin-bottom: 4px;
+			font-size: 0.88rem;
+			font-weight: 750;
+			line-height: 1.4;
+		}
+
+		.similar-meta {
+			margin-bottom: 0;
+			color: #697386;
+			font-size: 0.76rem;
+		}
+
+		.similar-action {
+			flex: 0 0 auto;
+			margin: 0;
+			border: 1px solid #bfd2e8;
+			background: #ffffff;
+			color: #175da8;
+			font-size: 0.78rem;
+			padding: 8px 10px;
+		}
+
+		.similar-action:hover {
+			background: #edf5ff;
+		}
+
 		button {
 			margin-top: 14px;
 			border: 0;
@@ -136,6 +227,11 @@
 				width: min(100% - 24px, 820px);
 				padding: 32px 0;
 			}
+
+			.similar-item {
+				align-items: flex-start;
+				flex-direction: column;
+			}
 		}
 	</style>
 </head>
@@ -157,6 +253,32 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+
+				<aside class="similar-questions" aria-labelledby="similar-heading">
+					<div class="similar-header">
+						<span class="similar-icon" aria-hidden="true">⌕</span>
+						<div>
+							<strong class="similar-heading" id="similar-heading">2 similar questions found</strong>
+							<p class="similar-description">One of these may already have the answer you need.</p>
+						</div>
+					</div>
+					<ul class="similar-list">
+						<li class="similar-item">
+							<div class="similar-copy">
+								<p class="similar-title">Can you show another example of a recursive function?</p>
+								<p class="similar-meta">Answered 6 minutes ago · 8 classmates found this helpful</p>
+							</div>
+							<button class="similar-action" type="button">View answer</button>
+						</li>
+						<li class="similar-item">
+							<div class="similar-copy">
+								<p class="similar-title">How does the base case stop an infinite loop?</p>
+								<p class="similar-meta">Waiting for an answer · 5 votes</p>
+							</div>
+							<button class="similar-action" type="button">Add my vote</button>
+						</li>
+					</ul>
+				</aside>
 
 				<button type="button">Submit Question</button>
 			</form>
