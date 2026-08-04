@@ -131,10 +131,52 @@
 			font-size: 0.92rem;
 		}
 
+		.history-footer {
+			display: flex;
+			gap: 16px;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 16px;
+			border-top: 1px solid #edf1f6;
+			padding-top: 16px;
+		}
+
+		.history-summary {
+			margin-bottom: 0;
+			color: #697386;
+			font-size: 0.82rem;
+		}
+
+		.history-button {
+			display: inline-flex;
+			gap: 7px;
+			align-items: center;
+			margin: 0;
+			border: 1px solid #c7d6e8;
+			background: #ffffff;
+			color: #175da8;
+			font-size: 0.82rem;
+			padding: 9px 12px;
+		}
+
+		.history-button:hover {
+			background: #f3f8fe;
+			border-color: #91b6dd;
+		}
+
 		@media (max-width: 620px) {
 			main {
 				width: min(100% - 24px, 820px);
 				padding: 32px 0;
+			}
+
+			.history-footer {
+				align-items: stretch;
+				flex-direction: column;
+			}
+
+			.history-button {
+				justify-content: center;
 			}
 		}
 	</style>
@@ -174,6 +216,10 @@
 					<p class="question-meta">CS 101 · asked 8 minutes ago</p>
 				</li>
 			</ul>
+			<footer class="history-footer">
+				<p class="history-summary">Showing the 2 most recent questions</p>
+				<button class="history-button" type="button">View question history <span aria-hidden="true">→</span></button>
+			</footer>
 		</section>
 	</main>
 </body>
