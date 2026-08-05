@@ -90,6 +90,84 @@
 			resize: vertical;
 		}
 
+		.attachment-dropzone {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			margin-top: 12px;
+			border: 1px dashed #b9c9dc;
+			border-radius: 9px;
+			background: #fafcff;
+			padding: 12px;
+		}
+
+		.attachment-dropzone:focus-within {
+			border-color: #175da8;
+			box-shadow: 0 0 0 3px rgba(23, 93, 168, 0.1);
+		}
+
+		.attachment-icon {
+			display: grid;
+			flex: 0 0 auto;
+			width: 34px;
+			height: 34px;
+			border-radius: 8px;
+			background: #e9f2fc;
+			color: #175da8;
+			font-size: 1rem;
+			font-weight: 800;
+			place-items: center;
+		}
+
+		.attachment-copy {
+			min-width: 0;
+			margin-right: auto;
+		}
+
+		.attachment-title {
+			display: block;
+			margin-bottom: 2px;
+			font-size: 0.84rem;
+		}
+
+		.optional-label {
+			color: #697386;
+			font-size: 0.72rem;
+			font-weight: 600;
+		}
+
+		.attachment-help {
+			margin-bottom: 0;
+			color: #697386;
+			font-size: 0.76rem;
+		}
+
+		.attachment-trigger {
+			flex: 0 0 auto;
+			margin: 0;
+			border: 1px solid #bfd0e2;
+			border-radius: 7px;
+			background: #ffffff;
+			color: #175da8;
+			cursor: pointer;
+			font-size: 0.78rem;
+			padding: 8px 10px;
+		}
+
+		.attachment-trigger:hover {
+			background: #edf5ff;
+		}
+
+		.visually-hidden {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip: rect(0 0 0 0);
+			clip-path: inset(50%);
+			white-space: nowrap;
+		}
+
 		button {
 			margin-top: 14px;
 			border: 0;
@@ -136,6 +214,19 @@
 				width: min(100% - 24px, 820px);
 				padding: 32px 0;
 			}
+
+			.attachment-dropzone {
+				align-items: flex-start;
+				flex-wrap: wrap;
+			}
+
+			.attachment-copy {
+				width: calc(100% - 46px);
+			}
+
+			.attachment-trigger {
+				margin-left: 46px;
+			}
 		}
 	</style>
 </head>
@@ -157,6 +248,15 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<div class="attachment-dropzone">
+					<span class="attachment-icon" aria-hidden="true">↑</span>
+					<div class="attachment-copy">
+						<strong class="attachment-title">Add supporting material <span class="optional-label">Optional</span></strong>
+						<p class="attachment-help">Attach a screenshot or PDF up to 10 MB.</p>
+					</div>
+					<input class="visually-hidden" id="question-attachment" name="attachment" type="file" accept="image/*,.pdf">
+					<label class="attachment-trigger" for="question-attachment">Choose file</label>
+				</div>
 
 				<button type="button">Submit Question</button>
 			</form>
