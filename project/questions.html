@@ -125,6 +125,28 @@
 			font-weight: 750;
 		}
 
+		.question-title-row {
+			display: flex;
+			gap: 9px;
+			align-items: center;
+			margin-bottom: 5px;
+		}
+
+		.question-title-row .question-title {
+			margin-bottom: 0;
+		}
+
+		.your-question-badge {
+			display: inline-flex;
+			flex: 0 0 auto;
+			border-radius: 999px;
+			background: #e8f7ee;
+			color: #17603a;
+			font-size: 0.7rem;
+			font-weight: 800;
+			padding: 4px 7px;
+		}
+
 		.question-meta {
 			margin-bottom: 0;
 			color: #697386;
@@ -166,7 +188,10 @@
 			<h2 id="recent-heading">Recent Questions</h2>
 			<ul class="question-list">
 				<li class="question">
-					<p class="question-title">Can you explain recursion one more time?</p>
+					<div class="question-title-row">
+						<p class="question-title">Can you explain recursion one more time?</p>
+						<span class="your-question-badge">Your question</span>
+					</div>
 					<p class="question-meta">CS 101 · asked 3 minutes ago</p>
 				</li>
 				<li class="question">
