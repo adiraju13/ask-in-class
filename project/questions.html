@@ -102,6 +102,33 @@
 			padding: 11px 15px;
 		}
 
+		.submit-row {
+			display: flex;
+			gap: 14px;
+			align-items: center;
+			margin-top: 14px;
+		}
+
+		.submit-row > button {
+			flex: 0 0 auto;
+			margin-top: 0;
+		}
+
+		.edit-window-note {
+			display: flex;
+			gap: 7px;
+			align-items: center;
+			margin-bottom: 0;
+			color: #697386;
+			font-size: 0.78rem;
+			line-height: 1.4;
+		}
+
+		.edit-window-icon {
+			color: #175da8;
+			font-size: 1rem;
+		}
+
 		.question-list {
 			display: grid;
 			gap: 12px;
@@ -136,6 +163,11 @@
 				width: min(100% - 24px, 820px);
 				padding: 32px 0;
 			}
+
+			.submit-row {
+				align-items: flex-start;
+				flex-direction: column;
+			}
 		}
 	</style>
 </head>
@@ -158,7 +190,10 @@
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
 
-				<button type="button">Submit Question</button>
+				<div class="submit-row">
+					<button type="button">Submit Question</button>
+					<p class="edit-window-note"><span class="edit-window-icon" aria-hidden="true">◷</span> You can edit for 2 minutes after submitting.</p>
+				</div>
 			</form>
 		</section>
 
