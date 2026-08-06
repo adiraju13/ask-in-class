@@ -122,11 +122,18 @@
 			text-transform: uppercase;
 		}
 
-		.time-group-label::after {
+		.time-group-line {
 			flex: 1;
 			height: 1px;
 			background: #e4eaf2;
-			content: "";
+		}
+
+		.time-group-count {
+			border-radius: 999px;
+			background: #eef2f7;
+			color: #5d667a;
+			font-size: 0.68rem;
+			padding: 4px 7px;
 		}
 
 		.question {
@@ -183,7 +190,11 @@
 
 		<section class="panel" aria-labelledby="recent-heading">
 			<h2 id="recent-heading">Recent Questions</h2>
-			<p class="time-group-label">Last 15 minutes</p>
+			<div class="time-group-label">
+				<span>Last 15 minutes</span>
+				<span class="time-group-line" aria-hidden="true"></span>
+				<span class="time-group-count">2 questions</span>
+			</div>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
