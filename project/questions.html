@@ -126,9 +126,18 @@
 		}
 
 		.question-meta {
+			display: flex;
+			gap: 5px;
+			align-items: center;
 			margin-bottom: 0;
 			color: #697386;
 			font-size: 0.92rem;
+		}
+
+		.timestamp-icon {
+			color: #175da8;
+			font-size: 0.9rem;
+			line-height: 1;
 		}
 
 		@media (max-width: 620px) {
@@ -167,11 +176,11 @@
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
-					<p class="question-meta">CS 101 · asked 3 minutes ago</p>
+					<p class="question-meta"><span class="timestamp-icon" aria-hidden="true">◷</span> CS 101 · asked 3 minutes ago</p>
 				</li>
 				<li class="question">
 					<p class="question-title">Will today's examples be posted after class?</p>
-					<p class="question-meta">CS 101 · asked 8 minutes ago</p>
+					<p class="question-meta"><span class="timestamp-icon" aria-hidden="true">◷</span> CS 101 · asked 8 minutes ago</p>
 				</li>
 			</ul>
 		</section>
