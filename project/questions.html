@@ -70,6 +70,13 @@
 			font-weight: 700;
 		}
 
+		.field-help {
+			margin: -3px 0 8px;
+			color: #697386;
+			font-size: 0.8rem;
+			line-height: 1.45;
+		}
+
 		select,
 		textarea {
 			width: 100%;
@@ -156,7 +163,8 @@
 				</select>
 
 				<label for="question">Question</label>
-				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<p class="field-help" id="question-help">Include the step where you got stuck or the example you are looking at.</p>
+				<textarea id="question" name="question" aria-describedby="question-help" placeholder="What would you like clarified?"></textarea>
 
 				<button type="button">Submit Question</button>
 			</form>
