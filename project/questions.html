@@ -48,6 +48,29 @@
 			letter-spacing: 0;
 		}
 
+		.composer-heading {
+			display: flex;
+			gap: 9px;
+			align-items: center;
+			margin-bottom: 14px;
+		}
+
+		.composer-heading h2 {
+			margin-bottom: 0;
+		}
+
+		.composer-icon {
+			display: grid;
+			width: 29px;
+			height: 29px;
+			border-radius: 8px;
+			background: #e9f2fc;
+			color: #175da8;
+			font-size: 0.92rem;
+			font-weight: 800;
+			place-items: center;
+		}
+
 		.muted {
 			color: #5d667a;
 		}
@@ -147,7 +170,10 @@
 		</header>
 
 		<section class="panel" aria-labelledby="ask-heading">
-			<h2 id="ask-heading">New Question</h2>
+			<div class="composer-heading">
+				<span class="composer-icon" aria-hidden="true">?</span>
+				<h2 id="ask-heading">New Question</h2>
+			</div>
 			<form>
 				<label for="class-select">Class</label>
 				<select id="class-select" name="class">
