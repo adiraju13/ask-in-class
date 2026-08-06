@@ -48,6 +48,58 @@
 			letter-spacing: 0;
 		}
 
+		.recent-heading-row {
+			display: flex;
+			gap: 16px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 14px;
+		}
+
+		.recent-heading-row h2 {
+			margin-bottom: 0;
+		}
+
+		.refresh-controls {
+			display: flex;
+			gap: 9px;
+			align-items: center;
+		}
+
+		.refresh-status {
+			display: inline-flex;
+			gap: 6px;
+			align-items: center;
+			color: #697386;
+			font-size: 0.76rem;
+			white-space: nowrap;
+		}
+
+		.refresh-status::before {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: #24a260;
+			content: "";
+		}
+
+		.refresh-button {
+			display: inline-flex;
+			gap: 6px;
+			align-items: center;
+			margin: 0;
+			border: 1px solid #c7d6e8;
+			background: #ffffff;
+			color: #175da8;
+			font-size: 0.78rem;
+			padding: 7px 9px;
+		}
+
+		.refresh-button:hover {
+			background: #f3f8fe;
+			border-color: #91b6dd;
+		}
+
 		.muted {
 			color: #5d667a;
 		}
@@ -136,6 +188,16 @@
 				width: min(100% - 24px, 820px);
 				padding: 32px 0;
 			}
+
+			.recent-heading-row {
+				align-items: stretch;
+				flex-direction: column;
+				gap: 10px;
+			}
+
+			.refresh-controls {
+				justify-content: space-between;
+			}
 		}
 	</style>
 </head>
@@ -163,7 +225,13 @@
 		</section>
 
 		<section class="panel" aria-labelledby="recent-heading">
-			<h2 id="recent-heading">Recent Questions</h2>
+			<div class="recent-heading-row">
+				<h2 id="recent-heading">Recent Questions</h2>
+				<div class="refresh-controls">
+					<span class="refresh-status" aria-live="polite">Updated just now</span>
+					<button class="refresh-button" type="button"><span aria-hidden="true">↻</span> Refresh</button>
+				</div>
+			</div>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
