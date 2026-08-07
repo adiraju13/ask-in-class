@@ -107,6 +107,21 @@
 			padding: 20px;
 		}
 
+		.composer-panel {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.composer-panel::before {
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			height: 4px;
+			background: linear-gradient(90deg, #175da8, #4e8dd2);
+			content: "";
+		}
+
 		.panel + .panel {
 			margin-top: 16px;
 		}
@@ -241,7 +256,7 @@
 			<p class="muted">Send a question to your professor during class.</p>
 		</header>
 
-		<section class="panel" aria-labelledby="ask-heading">
+		<section class="panel composer-panel" aria-labelledby="ask-heading">
 			<h2 id="ask-heading">New Question</h2>
 			<form>
 				<label for="class-select">Class</label>
