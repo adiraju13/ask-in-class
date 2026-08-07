@@ -193,6 +193,25 @@
 			list-style: none;
 		}
 
+		.time-group-label {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			margin: -2px 0 14px;
+			color: #697386;
+			font-size: 0.74rem;
+			font-weight: 750;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		.time-group-label::after {
+			flex: 1;
+			height: 1px;
+			background: #e4eaf2;
+			content: "";
+		}
+
 		.question {
 			border-top: 1px solid #edf1f6;
 			padding-top: 12px;
@@ -259,6 +278,7 @@
 
 		<section class="panel" aria-labelledby="recent-heading">
 			<h2 id="recent-heading">Recent Questions</h2>
+			<p class="time-group-label">Last 15 minutes</p>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
