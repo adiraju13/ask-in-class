@@ -77,6 +77,26 @@
 			margin-bottom: 20px;
 		}
 
+		.page-eyebrow {
+			display: inline-flex;
+			gap: 7px;
+			align-items: center;
+			margin-bottom: 8px;
+			color: #175da8;
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.page-eyebrow::before {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: #24a260;
+			content: "";
+		}
+
 		h1,
 		h2,
 		p {
@@ -237,6 +257,7 @@
 		</nav>
 
 		<header class="header">
+			<p class="page-eyebrow">CS 101 · Live classroom</p>
 			<h1>Ask a Question</h1>
 			<p class="muted">Send a question to your professor during class.</p>
 		</header>
