@@ -26,6 +26,53 @@
 			padding: 44px 0;
 		}
 
+		.breadcrumbs {
+			margin-bottom: 18px;
+		}
+
+		.breadcrumbs ol {
+			display: flex;
+			gap: 8px;
+			align-items: center;
+			margin: 0;
+			padding: 0;
+			color: #697386;
+			font-size: 0.84rem;
+			list-style: none;
+		}
+
+		.breadcrumbs li {
+			display: inline-flex;
+			gap: 8px;
+			align-items: center;
+		}
+
+		.breadcrumbs li + li::before {
+			color: #a7afbd;
+			content: "/";
+		}
+
+		.breadcrumbs a {
+			border-radius: 4px;
+			color: #175da8;
+			font-weight: 650;
+			text-decoration: none;
+		}
+
+		.breadcrumbs a:hover {
+			text-decoration: underline;
+		}
+
+		.breadcrumbs a:focus-visible {
+			outline: 3px solid #b8d9fa;
+			outline-offset: 3px;
+		}
+
+		.breadcrumbs [aria-current="page"] {
+			color: #46536a;
+			font-weight: 700;
+		}
+
 		.header {
 			margin-bottom: 20px;
 		}
@@ -141,6 +188,14 @@
 </head>
 <body>
 	<main>
+		<nav class="breadcrumbs" aria-label="Breadcrumb">
+			<ol>
+				<li><a href="/classes">Classes</a></li>
+				<li><a href="/classes/cs-101">CS 101</a></li>
+				<li aria-current="page">Questions</li>
+			</ol>
+		</nav>
+
 		<header class="header">
 			<h1>Ask a Question</h1>
 			<p class="muted">Send a question to your professor during class.</p>
