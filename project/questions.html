@@ -137,6 +137,21 @@
 			resize: vertical;
 		}
 
+		.resize-hint {
+			display: flex;
+			gap: 6px;
+			align-items: center;
+			justify-content: flex-end;
+			margin: 6px 0 0;
+			color: #697386;
+			font-size: 0.76rem;
+		}
+
+		.resize-icon {
+			color: #175da8;
+			font-size: 0.9rem;
+		}
+
 		button {
 			margin-top: 14px;
 			border: 0;
@@ -252,6 +267,7 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<p class="resize-hint"><span class="resize-icon" aria-hidden="true">⤢</span> Drag the corner to expand</p>
 
 				<button class="submit-button" type="button">Submit Question <span class="submit-arrow" aria-hidden="true">→</span></button>
 			</form>
