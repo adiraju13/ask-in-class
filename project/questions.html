@@ -126,6 +126,19 @@
 			color: #172033;
 			font: inherit;
 			padding: 11px 12px;
+			transition: border-color 150ms ease, box-shadow 150ms ease;
+		}
+
+		select:hover,
+		textarea:hover {
+			border-color: #aabbd0;
+		}
+
+		select:focus,
+		textarea:focus {
+			border-color: #175da8;
+			box-shadow: 0 0 0 3px rgba(23, 93, 168, 0.14);
+			outline: 0;
 		}
 
 		select {
@@ -183,6 +196,11 @@
 
 		.submit-button:hover .submit-arrow {
 			transform: translateX(3px);
+		}
+
+		button:focus-visible {
+			outline: 3px solid #8fc4ff;
+			outline-offset: 3px;
 		}
 
 		.question-list {
