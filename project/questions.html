@@ -95,6 +95,30 @@
 			letter-spacing: 0;
 		}
 
+		.section-heading {
+			display: flex;
+			gap: 9px;
+			align-items: center;
+			margin-bottom: 14px;
+		}
+
+		.section-heading h2 {
+			margin-bottom: 0;
+		}
+
+		.section-number {
+			display: grid;
+			flex: 0 0 auto;
+			width: 27px;
+			height: 27px;
+			border-radius: 50%;
+			background: #175da8;
+			color: #ffffff;
+			font-size: 0.76rem;
+			font-weight: 850;
+			place-items: center;
+		}
+
 		.muted {
 			color: #5d667a;
 		}
@@ -242,7 +266,10 @@
 		</header>
 
 		<section class="panel" aria-labelledby="ask-heading">
-			<h2 id="ask-heading">New Question</h2>
+			<div class="section-heading">
+				<span class="section-number" aria-hidden="true">1</span>
+				<h2 id="ask-heading">New Question</h2>
+			</div>
 			<form>
 				<label for="class-select">Class</label>
 				<select id="class-select" name="class">
@@ -258,7 +285,10 @@
 		</section>
 
 		<section class="panel" aria-labelledby="recent-heading">
-			<h2 id="recent-heading">Recent Questions</h2>
+			<div class="section-heading">
+				<span class="section-number" aria-hidden="true">2</span>
+				<h2 id="recent-heading">Recent Questions</h2>
+			</div>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
