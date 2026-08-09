@@ -137,6 +137,21 @@
 			resize: vertical;
 		}
 
+		.language-field {
+			width: min(240px, 100%);
+			margin-top: 12px;
+		}
+
+		.language-field select {
+			margin-bottom: 0;
+		}
+
+		.language-hint {
+			margin: 7px 0 0;
+			color: #697386;
+			font-size: 0.78rem;
+		}
+
 		button {
 			margin-top: 14px;
 			border: 0;
@@ -252,6 +267,15 @@
 
 				<label for="question">Question</label>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<div class="language-field">
+					<label for="question-language">Question language</label>
+					<select id="question-language" name="question-language">
+						<option>English</option>
+						<option>Spanish</option>
+						<option>French</option>
+					</select>
+					<p class="language-hint">Professor Lee will see your selected language.</p>
+				</div>
 
 				<button class="submit-button" type="button">Submit Question <span class="submit-arrow" aria-hidden="true">→</span></button>
 			</form>
