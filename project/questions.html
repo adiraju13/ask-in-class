@@ -117,6 +117,28 @@
 			font-weight: 700;
 		}
 
+		.field-label-row {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 8px;
+		}
+
+		.field-label-row label {
+			margin-bottom: 0;
+		}
+
+		.term-badge {
+			display: inline-flex;
+			border-radius: 999px;
+			background: #eef2f7;
+			color: #5d667a;
+			font-size: 0.72rem;
+			font-weight: 750;
+			padding: 4px 7px;
+		}
+
 		select,
 		textarea {
 			width: 100%;
@@ -244,7 +266,10 @@
 		<section class="panel" aria-labelledby="ask-heading">
 			<h2 id="ask-heading">New Question</h2>
 			<form>
-				<label for="class-select">Class</label>
+				<div class="field-label-row">
+					<label for="class-select">Class</label>
+					<span class="term-badge">Fall 2026</span>
+				</div>
 				<select id="class-select" name="class">
 					<option>CS 101</option>
 					<option>MATH 240</option>
