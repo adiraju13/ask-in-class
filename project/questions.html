@@ -224,6 +224,69 @@
 				width: 100%;
 			}
 		}
+
+		.panel-head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+		}
+
+		.filter-button {
+			margin-top: 0;
+			background: #eef3fa;
+			color: #175da8;
+			font-size: 0.9rem;
+			padding: 7px 12px;
+		}
+
+		.modal-overlay {
+			position: fixed;
+			inset: 0;
+			display: none;
+			align-items: center;
+			justify-content: center;
+			padding: 16px;
+			background: rgba(23, 32, 51, 0.45);
+		}
+
+		.modal-overlay[data-open="true"] {
+			display: flex;
+		}
+
+		.modal {
+			width: min(400px, 100%);
+			border-radius: 12px;
+			background: #ffffff;
+			box-shadow: 0 12px 40px rgba(23, 32, 51, 0.25);
+			padding: 22px;
+		}
+
+		.modal h2 {
+			margin-bottom: 4px;
+		}
+
+		.filter-options {
+			display: grid;
+			gap: 8px;
+			margin-top: 16px;
+		}
+
+		.filter-option {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			border: 1px solid #dfe5ef;
+			border-radius: 8px;
+			padding: 11px 12px;
+			cursor: pointer;
+			font-weight: 600;
+		}
+
+		.filter-option input {
+			width: auto;
+			margin: 0;
+		}
 	</style>
 </head>
 <body>
@@ -258,7 +321,10 @@
 		</section>
 
 		<section class="panel" aria-labelledby="recent-heading">
-			<h2 id="recent-heading">Recent Questions</h2>
+			<div class="panel-head">
+				<h2 id="recent-heading">Recent Questions</h2>
+				<button type="button" class="filter-button" id="open-filter">Filter by class</button>
+			</div>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
@@ -270,6 +336,34 @@
 				</li>
 			</ul>
 		</section>
+
+		<div class="modal-overlay" id="filter-modal" role="dialog" aria-modal="true" aria-labelledby="filter-title">
+			<div class="modal">
+				<h2 id="filter-title">Filter by class</h2>
+				<p class="muted">Show questions from a single class.</p>
+				<div class="filter-options">
+					<label class="filter-option"><input type="radio" name="class-filter" value="all" checked> All classes</label>
+					<label class="filter-option"><input type="radio" name="class-filter" value="CS 101"> CS 101</label>
+					<label class="filter-option"><input type="radio" name="class-filter" value="MATH 240"> MATH 240</label>
+				</div>
+				<button type="button" id="apply-filter">Apply</button>
+			</div>
+		</div>
 	</main>
+
+	<script>
+		(function () {
+			var modal = document.getElementById("filter-modal");
+			document.getElementById("open-filter").addEventListener("click", function () {
+				modal.setAttribute("data-open", "true");
+			});
+			document.getElementById("apply-filter").addEventListener("click", function () {
+				modal.removeAttribute("data-open");
+			});
+			modal.addEventListener("click", function (event) {
+				if (event.target === modal) modal.removeAttribute("data-open");
+			});
+		})();
+	</script>
 </body>
 </html>
