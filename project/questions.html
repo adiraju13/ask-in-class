@@ -214,6 +214,29 @@
 			font-size: 0.92rem;
 		}
 
+		.question-footer {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.bookmark-button {
+			margin-top: 0;
+			border: 1px solid #dbe2ed;
+			border-radius: 999px;
+			background: #ffffff;
+			color: #536078;
+			font-size: 0.78rem;
+			padding: 6px 9px;
+		}
+
+		.bookmark-button[aria-pressed="true"] {
+			border-color: #b8c7ed;
+			background: #eef2ff;
+			color: #315aaf;
+		}
+
 		@media (max-width: 620px) {
 			main {
 				width: min(100% - 24px, 820px);
@@ -262,14 +285,30 @@
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
-					<p class="question-meta">CS 101 · asked 3 minutes ago</p>
+					<div class="question-footer">
+						<p class="question-meta">CS 101 · asked 3 minutes ago</p>
+						<button class="bookmark-button" type="button" aria-pressed="false">☆ Save</button>
+					</div>
 				</li>
 				<li class="question">
 					<p class="question-title">Will today's examples be posted after class?</p>
-					<p class="question-meta">CS 101 · asked 8 minutes ago</p>
+					<div class="question-footer">
+						<p class="question-meta">CS 101 · asked 8 minutes ago</p>
+						<button class="bookmark-button" type="button" aria-pressed="false">☆ Save</button>
+					</div>
 				</li>
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		document.querySelectorAll(".bookmark-button").forEach((button) => {
+			button.addEventListener("click", () => {
+				const saved = button.getAttribute("aria-pressed") === "true";
+				button.setAttribute("aria-pressed", String(!saved));
+				button.textContent = saved ? "☆ Save" : "★ Saved";
+			});
+		});
+	</script>
 </body>
 </html>
