@@ -135,6 +135,33 @@
 		textarea {
 			min-height: 110px;
 			resize: vertical;
+			transition: min-height 180ms ease;
+		}
+
+		textarea.expanded {
+			min-height: 240px;
+		}
+
+		.question-label-row {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 8px;
+		}
+
+		.question-label-row label {
+			margin-bottom: 0;
+		}
+
+		.expand-button {
+			margin-top: 0;
+			border: 1px solid #d4dce9;
+			border-radius: 6px;
+			background: #ffffff;
+			color: #536078;
+			font-size: 0.78rem;
+			padding: 6px 9px;
 		}
 
 		button {
@@ -250,7 +277,10 @@
 					<option>MATH 240</option>
 				</select>
 
-				<label for="question">Question</label>
+				<div class="question-label-row">
+					<label for="question">Question</label>
+					<button class="expand-button" id="expand-editor" type="button" aria-expanded="false">Expand editor</button>
+				</div>
 				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
 
 				<button class="submit-button" type="button">Submit Question <span class="submit-arrow" aria-hidden="true">→</span></button>
@@ -271,5 +301,16 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const editor = document.querySelector("#question");
+		const expandButton = document.querySelector("#expand-editor");
+		expandButton.addEventListener("click", () => {
+			const expanded = editor.classList.toggle("expanded");
+			expandButton.setAttribute("aria-expanded", String(expanded));
+			expandButton.textContent = expanded ? "Collapse editor" : "Expand editor";
+			editor.focus();
+		});
+	</script>
 </body>
 </html>
