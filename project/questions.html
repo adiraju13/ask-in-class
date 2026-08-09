@@ -214,6 +214,30 @@
 			font-size: 0.92rem;
 		}
 
+		.question-footer {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.copy-link {
+			margin-top: 0;
+			border: 1px solid #dbe2ed;
+			border-radius: 999px;
+			background: #ffffff;
+			color: #536078;
+			font-size: 0.78rem;
+			padding: 6px 9px;
+			white-space: nowrap;
+		}
+
+		.copy-link:hover {
+			border-color: #aebde0;
+			background: #f2f5ff;
+			color: #315aaf;
+		}
+
 		@media (max-width: 620px) {
 			main {
 				width: min(100% - 24px, 820px);
@@ -260,16 +284,33 @@
 		<section class="panel" aria-labelledby="recent-heading">
 			<h2 id="recent-heading">Recent Questions</h2>
 			<ul class="question-list">
-				<li class="question">
+				<li class="question" id="question-recursion">
 					<p class="question-title">Can you explain recursion one more time?</p>
-					<p class="question-meta">CS 101 · asked 3 minutes ago</p>
+					<div class="question-footer">
+						<p class="question-meta">CS 101 · asked 3 minutes ago</p>
+						<button class="copy-link" type="button" aria-live="polite">Copy link</button>
+					</div>
 				</li>
-				<li class="question">
+				<li class="question" id="question-examples">
 					<p class="question-title">Will today's examples be posted after class?</p>
-					<p class="question-meta">CS 101 · asked 8 minutes ago</p>
+					<div class="question-footer">
+						<p class="question-meta">CS 101 · asked 8 minutes ago</p>
+						<button class="copy-link" type="button" aria-live="polite">Copy link</button>
+					</div>
 				</li>
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		document.querySelectorAll(".copy-link").forEach((button) => {
+			button.addEventListener("click", async () => {
+				const questionId = button.closest(".question").id;
+				const link = `${window.location.href.split("#")[0]}#${questionId}`;
+				await navigator.clipboard.writeText(link);
+				button.textContent = "Copied!";
+			});
+		});
+	</script>
 </body>
 </html>
