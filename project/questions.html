@@ -224,6 +224,50 @@
 				width: 100%;
 			}
 		}
+
+		.question {
+			cursor: pointer;
+		}
+
+		.modal-overlay {
+			display: none;
+			position: fixed;
+			inset: 0;
+			align-items: center;
+			justify-content: center;
+			background: rgba(23, 32, 51, 0.45);
+			padding: 16px;
+		}
+
+		.modal-overlay.open {
+			display: flex;
+		}
+
+		.modal {
+			width: min(380px, 100%);
+			border-radius: 10px;
+			background: #ffffff;
+			box-shadow: 0 12px 32px rgba(23, 32, 51, 0.2);
+			padding: 22px;
+		}
+
+		.modal h2 {
+			font-size: 1.15rem;
+		}
+
+		.modal p {
+			color: #5d667a;
+		}
+
+		.modal-actions {
+			display: flex;
+			justify-content: flex-end;
+			margin-top: 18px;
+		}
+
+		.modal-actions button {
+			margin-top: 0;
+		}
 	</style>
 </head>
 <body>
@@ -260,16 +304,44 @@
 		<section class="panel" aria-labelledby="recent-heading">
 			<h2 id="recent-heading">Recent Questions</h2>
 			<ul class="question-list">
-				<li class="question">
+				<li class="question" data-title="Can you explain recursion one more time?" data-meta="CS 101 · asked 3 minutes ago">
 					<p class="question-title">Can you explain recursion one more time?</p>
 					<p class="question-meta">CS 101 · asked 3 minutes ago</p>
 				</li>
-				<li class="question">
+				<li class="question" data-title="Will today's examples be posted after class?" data-meta="CS 101 · asked 8 minutes ago">
 					<p class="question-title">Will today's examples be posted after class?</p>
 					<p class="question-meta">CS 101 · asked 8 minutes ago</p>
 				</li>
 			</ul>
 		</section>
 	</main>
+
+	<div class="modal-overlay" id="question-modal-overlay">
+		<div class="modal" role="dialog" aria-modal="true" aria-labelledby="question-modal-heading">
+			<h2 id="question-modal-heading"></h2>
+			<p id="question-modal-meta"></p>
+			<div class="modal-actions">
+				<button type="button" id="question-modal-close">Close</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const questionModalOverlay = document.querySelector("#question-modal-overlay");
+		const questionModalHeading = document.querySelector("#question-modal-heading");
+		const questionModalMeta = document.querySelector("#question-modal-meta");
+
+		document.querySelectorAll(".question").forEach((item) => {
+			item.addEventListener("click", () => {
+				questionModalHeading.textContent = item.dataset.title;
+				questionModalMeta.textContent = item.dataset.meta;
+				questionModalOverlay.classList.add("open");
+			});
+		});
+
+		document.querySelector("#question-modal-close").addEventListener("click", () => {
+			questionModalOverlay.classList.remove("open");
+		});
+	</script>
 </body>
 </html>
