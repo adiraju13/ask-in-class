@@ -193,6 +193,39 @@
 			list-style: none;
 		}
 
+		.recent-header {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 14px;
+		}
+
+		.recent-header h2 {
+			margin-bottom: 0;
+		}
+
+		.online-badge {
+			display: inline-flex;
+			gap: 7px;
+			align-items: center;
+			border-radius: 999px;
+			background: #e9f8ef;
+			color: #17603a;
+			font-size: 0.78rem;
+			font-weight: 800;
+			padding: 6px 9px;
+			white-space: nowrap;
+		}
+
+		.online-badge::before {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: #20a66a;
+			content: "";
+		}
+
 		.question {
 			border-top: 1px solid #edf1f6;
 			padding-top: 12px;
@@ -258,7 +291,10 @@
 		</section>
 
 		<section class="panel" aria-labelledby="recent-heading">
-			<h2 id="recent-heading">Recent Questions</h2>
+			<div class="recent-header">
+				<h2 id="recent-heading">Recent Questions</h2>
+				<span class="online-badge">24 classmates online</span>
+			</div>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
