@@ -99,6 +99,42 @@
 			color: #5d667a;
 		}
 
+		.announcement {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			margin-bottom: 16px;
+			border: 1px solid #ead9a8;
+			border-radius: 8px;
+			background: #fff9e8;
+			padding: 12px 14px;
+		}
+
+		.announcement-icon {
+			display: grid;
+			width: 32px;
+			height: 32px;
+			border-radius: 50%;
+			background: #ffe8a3;
+			color: #805800;
+			font-weight: 900;
+			place-items: center;
+		}
+
+		.announcement-copy {
+			flex: 1;
+			margin-bottom: 0;
+			color: #6f5520;
+			font-size: 0.88rem;
+		}
+
+		.announcement a {
+			color: #765300;
+			font-size: 0.82rem;
+			font-weight: 800;
+			white-space: nowrap;
+		}
+
 		.panel {
 			border: 1px solid #dfe5ef;
 			border-radius: 8px;
@@ -240,6 +276,12 @@
 			<h1>Ask a Question</h1>
 			<p class="muted">Send a question to your professor during class.</p>
 		</header>
+
+		<aside class="announcement" aria-label="Class announcement">
+			<span class="announcement-icon">!</span>
+			<p class="announcement-copy"><strong>New from Professor Lee:</strong> Midterm review slides are now available.</p>
+			<a href="#">View slides</a>
+		</aside>
 
 		<section class="panel" aria-labelledby="ask-heading">
 			<h2 id="ask-heading">New Question</h2>
