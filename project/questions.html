@@ -214,6 +214,30 @@
 			font-size: 0.92rem;
 		}
 
+		.question-footer {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.notify-button {
+			margin-top: 0;
+			border: 1px solid #dbe2ed;
+			border-radius: 999px;
+			background: #ffffff;
+			color: #536078;
+			font-size: 0.78rem;
+			padding: 6px 9px;
+			white-space: nowrap;
+		}
+
+		.notify-button[aria-pressed="true"] {
+			border-color: #b8c7ed;
+			background: #eef2ff;
+			color: #315aaf;
+		}
+
 		@media (max-width: 620px) {
 			main {
 				width: min(100% - 24px, 820px);
@@ -262,7 +286,10 @@
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
-					<p class="question-meta">CS 101 · asked 3 minutes ago</p>
+					<div class="question-footer">
+						<p class="question-meta">CS 101 · asked 3 minutes ago</p>
+						<button class="notify-button" type="button" aria-pressed="false">Notify me</button>
+					</div>
 				</li>
 				<li class="question">
 					<p class="question-title">Will today's examples be posted after class?</p>
@@ -271,5 +298,14 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const notifyButton = document.querySelector(".notify-button");
+		notifyButton.addEventListener("click", () => {
+			const enabled = notifyButton.getAttribute("aria-pressed") === "true";
+			notifyButton.setAttribute("aria-pressed", String(!enabled));
+			notifyButton.textContent = enabled ? "Notify me" : "Notifications on";
+		});
+	</script>
 </body>
 </html>
