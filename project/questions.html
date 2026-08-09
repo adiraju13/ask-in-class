@@ -194,13 +194,35 @@
 		}
 
 		.question {
+			position: relative;
 			border-top: 1px solid #edf1f6;
+			padding-left: 42px;
 			padding-top: 12px;
+		}
+
+		.question::before {
+			position: absolute;
+			top: 12px;
+			left: 0;
+			display: grid;
+			width: 30px;
+			height: 30px;
+			border-radius: 9px;
+			background: #e9f2fc;
+			color: #175da8;
+			content: "?";
+			font-size: 0.86rem;
+			font-weight: 850;
+			place-items: center;
 		}
 
 		.question:first-child {
 			border-top: 0;
 			padding-top: 0;
+		}
+
+		.question:first-child::before {
+			top: 0;
 		}
 
 		.question-title {
