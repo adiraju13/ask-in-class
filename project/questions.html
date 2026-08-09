@@ -193,6 +193,28 @@
 			list-style: none;
 		}
 
+		.recent-header {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 14px;
+		}
+
+		.recent-header h2 {
+			margin-bottom: 0;
+		}
+
+		.download-button {
+			margin-top: 0;
+			border: 1px solid #d4dce9;
+			border-radius: 7px;
+			background: #ffffff;
+			color: #536078;
+			font-size: 0.78rem;
+			padding: 7px 10px;
+		}
+
 		.question {
 			border-top: 1px solid #edf1f6;
 			padding-top: 12px;
@@ -258,7 +280,10 @@
 		</section>
 
 		<section class="panel" aria-labelledby="recent-heading">
-			<h2 id="recent-heading">Recent Questions</h2>
+			<div class="recent-header">
+				<h2 id="recent-heading">Recent Questions</h2>
+				<button class="download-button" id="download-questions" type="button">Download .txt</button>
+			</div>
 			<ul class="question-list">
 				<li class="question">
 					<p class="question-title">Can you explain recursion one more time?</p>
@@ -271,5 +296,17 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		document.querySelector("#download-questions").addEventListener("click", () => {
+			const questions = [...document.querySelectorAll(".question")]
+				.map((question, index) => `${index + 1}. ${question.querySelector(".question-title").textContent}\n${question.querySelector(".question-meta").textContent}`)
+				.join("\n\n");
+			const url = URL.createObjectURL(new Blob([questions], { type: "text/plain" }));
+			const link = Object.assign(document.createElement("a"), { href: url, download: "ask-in-class-questions.txt" });
+			link.click();
+			URL.revokeObjectURL(url);
+		});
+	</script>
 </body>
 </html>
