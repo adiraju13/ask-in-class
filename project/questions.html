@@ -99,6 +99,39 @@
 			color: #5d667a;
 		}
 
+		.class-code-card {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 16px;
+			border: 1px solid #dce4f1;
+			border-radius: 8px;
+			background: #ffffff;
+			padding: 11px 13px;
+		}
+
+		.class-code-card span {
+			color: #697386;
+			font-size: 0.82rem;
+		}
+
+		.class-code-card strong {
+			display: block;
+			margin-top: 2px;
+			color: #27344d;
+			letter-spacing: 0.08em;
+		}
+
+		.class-code-card button {
+			margin-top: 0;
+			border: 1px solid #bdcae4;
+			background: #f5f8ff;
+			color: #315aaf;
+			font-size: 0.8rem;
+			padding: 7px 10px;
+		}
+
 		.panel {
 			border: 1px solid #dfe5ef;
 			border-radius: 8px;
@@ -241,6 +274,11 @@
 			<p class="muted">Send a question to your professor during class.</p>
 		</header>
 
+		<aside class="class-code-card" aria-label="Class join code">
+			<span>Invite a classmate<strong>CS101-LEE</strong></span>
+			<button id="copy-class-code" type="button" aria-live="polite">Copy class code</button>
+		</aside>
+
 		<section class="panel" aria-labelledby="ask-heading">
 			<h2 id="ask-heading">New Question</h2>
 			<form>
@@ -271,5 +309,13 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const copyCodeButton = document.querySelector("#copy-class-code");
+		copyCodeButton.addEventListener("click", async () => {
+			await navigator.clipboard.writeText("CS101-LEE");
+			copyCodeButton.textContent = "Copied!";
+		});
+	</script>
 </body>
 </html>
