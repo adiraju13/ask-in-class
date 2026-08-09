@@ -224,6 +224,18 @@
 				width: 100%;
 			}
 		}
+
+		.char-counter {
+			margin-top: 6px;
+			text-align: right;
+			font-size: 0.85rem;
+			color: #697386;
+		}
+
+		.char-counter[data-over="true"] {
+			color: #c0392b;
+			font-weight: 700;
+		}
 	</style>
 </head>
 <body>
@@ -251,7 +263,8 @@
 				</select>
 
 				<label for="question">Question</label>
-				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<textarea id="question" name="question" placeholder="Type your question here" maxlength="280"></textarea>
+				<p class="char-counter" id="char-counter">0 / 280</p>
 
 				<button class="submit-button" type="button">Submit Question <span class="submit-arrow" aria-hidden="true">→</span></button>
 			</form>
@@ -271,5 +284,18 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		(function () {
+			var field = document.getElementById("question");
+			var counter = document.getElementById("char-counter");
+			var max = 280;
+			field.addEventListener("input", function () {
+				var len = field.value.length;
+				counter.textContent = len + " / " + max;
+				counter.setAttribute("data-over", String(len >= max));
+			});
+		})();
+	</script>
 </body>
 </html>
