@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AskInClass - Class View</title>
+	<style>
+		:root {
+			font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			background: #f6f8fb;
+			color: #172033;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			background: #f6f8fb;
+		}
+
+		main {
+			width: min(900px, calc(100% - 32px));
+			margin: 0 auto;
+			padding: 42px 0;
+		}
+
+		.header {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 18px;
+			margin-bottom: 20px;
+		}
+
+		.kicker,
+		.meta,
+		.muted {
+			color: #5d667a;
+		}
+
+		.kicker {
+			margin: 0 0 8px;
+			font-weight: 700;
+		}
+
+		h1,
+		h2,
+		p {
+			margin-top: 0;
+		}
+
+		h1 {
+			margin-bottom: 8px;
+			font-size: 2rem;
+			letter-spacing: 0;
+		}
+
+		h2 {
+			margin-bottom: 0;
+			font-size: 1.1rem;
+			letter-spacing: 0;
+		}
+
+		.meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px 16px;
+			margin-bottom: 0;
+		}
+
+		.badge {
+			border: 1px solid #c8e6d6;
+			border-radius: 8px;
+			background: #e8f4ef;
+			color: #166344;
+			padding: 10px 12px;
+			font-weight: 700;
+			white-space: nowrap;
+		}
+
+		.stats {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 12px;
+			margin-bottom: 18px;
+		}
+
+		.stat,
+		.queue {
+			border: 1px solid #dfe5ef;
+			border-radius: 8px;
+			background: #ffffff;
+			box-shadow: 0 1px 2px rgba(23, 32, 51, 0.05);
+		}
+
+		.stat {
+			padding: 15px;
+		}
+
+		.label {
+			margin-bottom: 6px;
+			color: #697386;
+			font-size: 0.8rem;
+			font-weight: 700;
+			text-transform: uppercase;
+		}
+
+		.value {
+			margin-bottom: 0;
+			font-weight: 700;
+		}
+
+		.queue-header,
+		.question {
+			display: grid;
+			grid-template-columns: auto 1fr auto;
+			gap: 12px;
+			align-items: center;
+			padding: 15px 17px;
+		}
+
+		.queue-header {
+			grid-template-columns: 1fr auto;
+			border-bottom: 1px solid #e7ecf3;
+		}
+
+		.count {
+			color: #5d667a;
+			font-weight: 700;
+		}
+
+		.questions {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.question + .question {
+			border-top: 1px solid #edf1f6;
+		}
+
+		.votes,
+		.tag {
+			border-radius: 8px;
+			font-weight: 700;
+			white-space: nowrap;
+		}
+
+		.votes {
+			min-width: 42px;
+			background: #eef2f8;
+			padding: 8px;
+			text-align: center;
+		}
+
+		.tag {
+			background: #fff3d4;
+			color: #7a5200;
+			padding: 7px 9px;
+			font-size: 0.86rem;
+		}
+
+		.question-text {
+			margin-bottom: 4px;
+			font-weight: 700;
+		}
+
+		.muted {
+			margin-bottom: 0;
+			font-size: 0.92rem;
+		}
+
+		@media (max-width: 680px) {
+			main {
+				width: min(100% - 24px, 900px);
+				padding: 32px 0;
+			}
+
+			.header,
+			.stats,
+			.question {
+				display: grid;
+				grid-template-columns: 1fr;
+			}
+
+			.badge,
+			.tag {
+				width: fit-content;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<header class="header">
+			<div>
+				<p class="kicker">Current Class</p>
+				<h1>CS 101 - Introduction to Computer Science</h1>
+				<p class="meta">
+					<span>Professor Lee</span>
+					<span>Mon/Wed 9:00 AM</span>
+					<span>Room 204</span>
+				</p>
+			</div>
+			<div class="badge">Open for questions</div>
+		</header>
+
+		<section class="stats" aria-label="Class details">
+			<div class="stat">
+				<p class="label">Next meeting</p>
+				<p class="value">Wednesday at 9:00 AM</p>
+			</div>
+			<div class="stat">
+				<p class="label">Students</p>
+				<p class="value">42 enrolled</p>
+			</div>
+			<div class="stat">
+				<p class="label">Questions today</p>
+				<p class="value">8 submitted</p>
+			</div>
+		</section>
+
+		<section class="queue" aria-labelledby="queue-heading">
+			<div class="queue-header">
+				<h2 id="queue-heading">Question Queue</h2>
+				<span class="count">3 open</span>
+			</div>
+
+			<ul class="questions">
+				<li class="question">
+					<div class="votes">12</div>
+					<div>
+						<p class="question-text">Can you go over the difference between arrays and lists?</p>
+						<p class="muted">Asked 4 minutes ago</p>
+					</div>
+					<span class="tag">Data structures</span>
+				</li>
+				<li class="question">
+					<div class="votes">7</div>
+					<div>
+						<p class="question-text">Will the homework use the same input format as the example?</p>
+						<p class="muted">Asked 9 minutes ago</p>
+					</div>
+					<span class="tag">Homework</span>
+				</li>
+				<li class="question">
+					<div class="votes">4</div>
+					<div>
+						<p class="question-text">Could we see one more loop tracing example?</p>
+						<p class="muted">Asked 13 minutes ago</p>
+					</div>
+					<span class="tag">Examples</span>
+				</li>
+			</ul>
+		</section>
+	</main>
+</body>
+</html>
