@@ -111,6 +111,28 @@
 			margin-top: 16px;
 		}
 
+		.composer-header {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 14px;
+		}
+
+		.composer-header h2 {
+			margin-bottom: 0;
+		}
+
+		.composer-toggle {
+			margin-top: 0;
+			border: 1px solid #d4dce9;
+			border-radius: 7px;
+			background: #ffffff;
+			color: #536078;
+			font-size: 0.78rem;
+			padding: 7px 10px;
+		}
+
 		label {
 			display: block;
 			margin-bottom: 8px;
@@ -242,8 +264,11 @@
 		</header>
 
 		<section class="panel" aria-labelledby="ask-heading">
-			<h2 id="ask-heading">New Question</h2>
-			<form>
+			<div class="composer-header">
+				<h2 id="ask-heading">New Question</h2>
+				<button class="composer-toggle" id="composer-toggle" type="button" aria-expanded="true">Hide composer</button>
+			</div>
+			<form id="question-form">
 				<label for="class-select">Class</label>
 				<select id="class-select" name="class">
 					<option>CS 101</option>
@@ -271,5 +296,16 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const composerToggle = document.querySelector("#composer-toggle");
+		const questionForm = document.querySelector("#question-form");
+		composerToggle.addEventListener("click", () => {
+			const expanded = composerToggle.getAttribute("aria-expanded") === "true";
+			composerToggle.setAttribute("aria-expanded", String(!expanded));
+			composerToggle.textContent = expanded ? "Show composer" : "Hide composer";
+			questionForm.hidden = expanded;
+		});
+	</script>
 </body>
 </html>
