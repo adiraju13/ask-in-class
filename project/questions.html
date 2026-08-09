@@ -99,6 +99,36 @@
 			color: #5d667a;
 		}
 
+		.connection-status {
+			display: inline-flex;
+			gap: 7px;
+			align-items: center;
+			margin-bottom: 16px;
+			border-radius: 999px;
+			background: #e8f8ef;
+			color: #17603a;
+			font-size: 0.8rem;
+			font-weight: 750;
+			padding: 7px 10px;
+		}
+
+		.connection-status::before {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: #20a66a;
+			content: "";
+		}
+
+		.connection-status.offline {
+			background: #fff0ed;
+			color: #9b3d2f;
+		}
+
+		.connection-status.offline::before {
+			background: #d95745;
+		}
+
 		.panel {
 			border: 1px solid #dfe5ef;
 			border-radius: 8px;
@@ -241,6 +271,8 @@
 			<p class="muted">Send a question to your professor during class.</p>
 		</header>
 
+		<div class="connection-status" id="connection-status" role="status">Connected · Questions submit instantly</div>
+
 		<section class="panel" aria-labelledby="ask-heading">
 			<h2 id="ask-heading">New Question</h2>
 			<form>
@@ -271,5 +303,18 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const connectionStatus = document.querySelector("#connection-status");
+		function updateConnectionStatus() {
+			connectionStatus.classList.toggle("offline", !navigator.onLine);
+			connectionStatus.textContent = navigator.onLine
+				? "Connected · Questions submit instantly"
+				: "Offline · Your question will wait to send";
+		}
+		window.addEventListener("online", updateConnectionStatus);
+		window.addEventListener("offline", updateConnectionStatus);
+		updateConnectionStatus();
+	</script>
 </body>
 </html>
