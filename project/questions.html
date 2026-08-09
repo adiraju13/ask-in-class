@@ -208,6 +208,36 @@
 			font-weight: 750;
 		}
 
+		.question-title-row {
+			display: flex;
+			gap: 12px;
+			align-items: flex-start;
+			justify-content: space-between;
+			margin-bottom: 5px;
+		}
+
+		.question-title-row .question-title {
+			margin-bottom: 0;
+		}
+
+		.question-status {
+			border-radius: 999px;
+			font-size: 0.72rem;
+			font-weight: 800;
+			padding: 4px 8px;
+			white-space: nowrap;
+		}
+
+		.question-status.waiting {
+			background: #fff3db;
+			color: #8a5708;
+		}
+
+		.question-status.answered {
+			background: #e7f8ef;
+			color: #166534;
+		}
+
 		.question-meta {
 			margin-bottom: 0;
 			color: #697386;
@@ -261,11 +291,17 @@
 			<h2 id="recent-heading">Recent Questions</h2>
 			<ul class="question-list">
 				<li class="question">
-					<p class="question-title">Can you explain recursion one more time?</p>
+					<div class="question-title-row">
+						<p class="question-title">Can you explain recursion one more time?</p>
+						<span class="question-status waiting">Waiting</span>
+					</div>
 					<p class="question-meta">CS 101 · asked 3 minutes ago</p>
 				</li>
 				<li class="question">
-					<p class="question-title">Will today's examples be posted after class?</p>
+					<div class="question-title-row">
+						<p class="question-title">Will today's examples be posted after class?</p>
+						<span class="question-status answered">Answered</span>
+					</div>
 					<p class="question-meta">CS 101 · asked 8 minutes ago</p>
 				</li>
 			</ul>
