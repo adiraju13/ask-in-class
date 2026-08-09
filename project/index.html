@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AskInClass - My Classes</title>
+	<style>
+		:root {
+			color-scheme: light;
+			font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			background: #f6f8fb;
+			color: #172033;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			background: #f6f8fb;
+		}
+
+		main {
+			width: min(920px, calc(100% - 32px));
+			margin: 0 auto;
+			padding: 48px 0;
+		}
+
+		.page-header {
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			gap: 24px;
+			margin-bottom: 24px;
+		}
+
+		h1 {
+			margin: 0;
+			font-size: 2rem;
+			font-weight: 700;
+			letter-spacing: 0;
+		}
+
+		.student-name {
+			margin: 8px 0 0;
+			color: #5d667a;
+			font-size: 1rem;
+		}
+
+		.class-count {
+			border: 1px solid #d9dfeb;
+			border-radius: 8px;
+			background: #ffffff;
+			padding: 10px 14px;
+			color: #3c465a;
+			font-weight: 600;
+			white-space: nowrap;
+		}
+
+		.class-list {
+			display: grid;
+			gap: 12px;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.class-card {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			gap: 16px;
+			align-items: center;
+			border: 1px solid #dfe5ef;
+			border-radius: 8px;
+			background: #ffffff;
+			padding: 18px 20px;
+			box-shadow: 0 1px 2px rgba(23, 32, 51, 0.05);
+		}
+
+		.class-title {
+			margin: 0;
+			font-size: 1.05rem;
+			font-weight: 700;
+			letter-spacing: 0;
+		}
+
+		.class-details {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px 18px;
+			margin: 8px 0 0;
+			color: #5d667a;
+			font-size: 0.95rem;
+		}
+
+		.next-session {
+			border-radius: 999px;
+			background: #e8f4ef;
+			color: #166344;
+			padding: 8px 12px;
+			font-size: 0.9rem;
+			font-weight: 700;
+			white-space: nowrap;
+		}
+
+		@media (max-width: 640px) {
+			main {
+				width: min(100% - 24px, 920px);
+				padding: 32px 0;
+			}
+
+			.page-header,
+			.class-card {
+				align-items: stretch;
+				grid-template-columns: 1fr;
+			}
+
+			.page-header {
+				display: grid;
+			}
+
+			.class-count,
+			.next-session {
+				width: fit-content;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<header class="page-header">
+			<div>
+				<h1>My Classes</h1>
+				<p class="student-name">Aditya Raju</p>
+			</div>
+			<div class="class-count">3 classes</div>
+		</header>
+
+		<ul class="class-list" aria-label="Classes">
+			<li class="class-card">
+				<div>
+					<h2 class="class-title">CS 101 - Introduction to Computer Science</h2>
+					<div class="class-details">
+						<span>Professor Lee</span>
+						<span>Mon/Wed 9:00 AM</span>
+						<span>Room 204</span>
+					</div>
+				</div>
+				<span class="next-session">Next: Wednesday</span>
+			</li>
+
+			<li class="class-card">
+				<div>
+					<h2 class="class-title">MATH 240 - Linear Algebra</h2>
+					<div class="class-details">
+						<span>Professor Patel</span>
+						<span>Tue/Thu 11:30 AM</span>
+						<span>Room 118</span>
+					</div>
+				</div>
+				<span class="next-session">Next: Thursday</span>
+			</li>
+
+			<li class="class-card">
+				<div>
+					<h2 class="class-title">HIST 180 - Modern World History</h2>
+					<div class="class-details">
+						<span>Professor Garcia</span>
+						<span>Fri 10:00 AM</span>
+						<span>Room 312</span>
+					</div>
+				</div>
+				<span class="next-session">Next: Friday</span>
+			</li>
+		</ul>
+	</main>
+</body>
+</html>
