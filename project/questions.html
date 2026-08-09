@@ -77,6 +77,49 @@
 			margin-bottom: 20px;
 		}
 
+		.contrast-toggle {
+			margin-top: 10px;
+			border: 1px solid #c8d1df;
+			border-radius: 7px;
+			background: #ffffff;
+			color: #445069;
+			font-size: 0.8rem;
+			padding: 7px 10px;
+		}
+
+		body.high-contrast {
+			background: #000000;
+			color: #ffffff;
+		}
+
+		body.high-contrast .panel {
+			border-color: #ffffff;
+			background: #000000;
+			box-shadow: none;
+		}
+
+		body.high-contrast select,
+		body.high-contrast textarea {
+			border-color: #ffffff;
+			background: #000000;
+			color: #ffffff;
+		}
+
+		body.high-contrast .muted,
+		body.high-contrast .question-meta {
+			color: #ffffff;
+		}
+
+		body.high-contrast .question {
+			border-color: #ffffff;
+		}
+
+		body.high-contrast .contrast-toggle {
+			border-color: #ffff00;
+			background: #000000;
+			color: #ffff00;
+		}
+
 		h1,
 		h2,
 		p {
@@ -239,6 +282,7 @@
 		<header class="header">
 			<h1>Ask a Question</h1>
 			<p class="muted">Send a question to your professor during class.</p>
+			<button class="contrast-toggle" id="contrast-toggle" type="button" aria-pressed="false">High contrast</button>
 		</header>
 
 		<section class="panel" aria-labelledby="ask-heading">
@@ -271,5 +315,14 @@
 			</ul>
 		</section>
 	</main>
+
+	<script>
+		const contrastToggle = document.querySelector("#contrast-toggle");
+		contrastToggle.addEventListener("click", () => {
+			const enabled = document.body.classList.toggle("high-contrast");
+			contrastToggle.setAttribute("aria-pressed", String(enabled));
+			contrastToggle.textContent = enabled ? "Standard contrast" : "High contrast";
+		});
+	</script>
 </body>
 </html>
