@@ -163,7 +163,8 @@
 		}
 
 		@media (prefers-reduced-motion: reduce) {
-			button {
+			button,
+			.question {
 				transition: none;
 			}
 		}
@@ -195,7 +196,14 @@
 
 		.question {
 			border-top: 1px solid #edf1f6;
+			border-radius: 4px;
 			padding-top: 12px;
+			transition: background-color 150ms ease, box-shadow 150ms ease;
+		}
+
+		.question:hover {
+			background: #f8fbff;
+			box-shadow: 0 0 0 8px #f8fbff;
 		}
 
 		.question:first-child {
