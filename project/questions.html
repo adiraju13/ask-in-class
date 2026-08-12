@@ -117,6 +117,22 @@
 			font-weight: 700;
 		}
 
+		.required-label {
+			display: flex;
+			gap: 8px;
+			align-items: center;
+		}
+
+		.required-badge {
+			border-radius: 999px;
+			background: #fff0f0;
+			color: #a33a3a;
+			font-size: 0.68rem;
+			font-weight: 800;
+			padding: 3px 6px;
+			text-transform: uppercase;
+		}
+
 		select,
 		textarea {
 			width: 100%;
@@ -250,8 +266,8 @@
 					<option>MATH 240</option>
 				</select>
 
-				<label for="question">Question</label>
-				<textarea id="question" name="question" placeholder="Type your question here"></textarea>
+				<label class="required-label" for="question">Question <span class="required-badge">Required</span></label>
+				<textarea id="question" name="question" required placeholder="Type your question here"></textarea>
 
 				<button class="submit-button" type="button">Submit Question <span class="submit-arrow" aria-hidden="true">→</span></button>
 			</form>
